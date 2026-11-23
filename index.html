@@ -27,11 +27,11 @@
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;background:radial-gradient(circle at 12% 10%,rgba(99,73,216,.34),transparent 42%),radial-gradient(circle at 88% 12%,rgba(0,149,217,.26),transparent 40%),linear-gradient(160deg,#090d1e 0%,#0f1631 55%,#0b132b 100%);color:var(--ink);font-family:"Space Grotesk","Cairo",system-ui,sans-serif;-webkit-user-select:none;user-select:none}
 body.rtl{font-family:"Cairo","Space Grotesk",system-ui,sans-serif}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 22px;background:rgba(12,18,40,.84);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 22px;background:rgba(11,16,38,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
 .brand{display:flex;align-items:center;gap:14px;min-width:0}
-.brand-banner{height:46px;padding:2px 8px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.22);box-shadow:0 6px 20px rgba(83,63,201,.35);flex-shrink:0;background:linear-gradient(135deg,#5251ca,#6657df,#5887dc);display:flex;align-items:center;justify-content:center}
-.brand-banner img{height:100%;width:auto;display:block;object-fit:contain}
-.brand-text h1{margin:0;font-size:18px;font-weight:800;letter-spacing:-.01em;line-height:1.15}
+.brand-banner{width:176px;height:46px;border-radius:11px;overflow:hidden;box-shadow:0 6px 20px rgba(83,63,201,.38);flex-shrink:0;border:1px solid rgba(255,255,255,.18)}
+#navLogoCanvas{width:100%;height:100%;display:block}
+.brand-text h1{margin:0;font-size:17.5px;font-weight:800;letter-spacing:-.01em;line-height:1.15}
 .brand-text p{margin:2px 0 0;font-size:12px;color:var(--mute)}
 .top-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
 button{font:inherit;cursor:pointer;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--ink);border-radius:11px;padding:8px 13px;font-size:13px;font-weight:700;transition:background .15s,border-color .15s,transform .12s,box-shadow .15s}
@@ -43,28 +43,28 @@ button.ghost-danger{color:#fda4af;border-color:rgba(244,63,94,.35);background:rg
 button.ghost-danger:hover{background:rgba(244,63,94,.2)}
 .workspace{max-width:1280px;margin:0 auto;padding:18px 20px 28px;display:grid;grid-template-columns:minmax(500px,1.12fr) minmax(380px,.88fr);gap:20px;align-items:start}
 @media (max-width:980px){.workspace{grid-template-columns:1fr;padding:14px}}
-.left-col{position:sticky;top:78px;display:flex;flex-direction:column;gap:14px}
+.left-col{position:sticky;top:76px;display:flex;flex-direction:column;gap:14px}
 @media (max-width:980px){.left-col{position:static}}
 .stage-card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px;backdrop-filter:blur(12px);box-shadow:0 16px 40px rgba(3,8,24,.45)}
-.stage{display:flex;justify-content:center;align-items:center;position:relative;padding:6px 0}
+.stage{display:flex;justify-content:center;align-items:center;position:relative;padding:4px 0}
 #wrap{width:100%;max-width:600px;position:relative;touch-action:none}
-#holder{transform-origin:top left;position:relative;width:600px;height:378px}
-#card{position:relative;width:600px;height:378px;border-radius:22px;overflow:hidden;background:#ffffff;color:#0e1b38;box-shadow:0 18px 46px rgba(4,9,30,.55);direction:ltr;font-family:"Space Grotesk","Cairo",sans-serif}
+#holder{transform-origin:top left;position:relative;width:600px;height:400px}
+#card{position:relative;width:600px;height:400px;border-radius:22px;overflow:hidden;background:#ffffff;color:#0e1b38;box-shadow:0 18px 46px rgba(4,9,30,.55);direction:ltr;font-family:"Space Grotesk","Cairo",sans-serif}
 #card::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(0,98,155,.085) 1px,transparent 1px);background-size:18px 18px;pointer-events:none;z-index:0}
 #card.theme-dark::before{background-image:radial-gradient(rgba(165,180,252,.14) 1px,transparent 1px)}
-#band{position:relative;height:98px;width:100%;background:linear-gradient(135deg,#5051c8 0%,#6654dc 48%,#5a87de 100%);overflow:hidden;display:flex;align-items:center;justify-content:center;padding:6px 20px;pointer-events:none;z-index:1}
-#band::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 12% 30%,rgba(255,255,255,.18) 1px,transparent 2px),radial-gradient(circle at 86% 68%,rgba(255,255,255,.22) 1px,transparent 2px),radial-gradient(circle at 18% 78%,rgba(255,255,255,.16) 1px,transparent 2px),radial-gradient(circle at 90% 24%,rgba(255,255,255,.18) 1px,transparent 2px);pointer-events:none}
-#band img.logo-bg{height:100%;width:auto;max-width:74%;object-fit:contain;display:block;position:relative;z-index:1}
-#band .logo-fallback{display:none;align-items:center;gap:12px;color:#fff;font-weight:800;font-size:22px;letter-spacing:.02em;position:relative;z-index:1}
-.class-pill{position:absolute;right:14px;top:12px;z-index:2;background:rgba(10,16,42,.48);border:1px solid rgba(255,255,255,.32);color:#fff;font-family:"JetBrains Mono","Cairo",monospace;font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:.05em}
-.card-body{position:relative;z-index:1;display:flex;gap:22px;padding:18px 24px 0;pointer-events:none}
+#band{position:relative;height:130px;width:100%;overflow:hidden;pointer-events:none;z-index:1;background:linear-gradient(135deg,#5051c8 0%,#6654dc 48%,#5a87de 100%)}
+#bandCanvas{width:100%;height:100%;display:block}
+.card-body{position:relative;z-index:1;display:flex;gap:22px;padding:20px 24px 0;pointer-events:none}
 .avatar-slot{width:140px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:8px}
 .avatar-frame{width:136px;height:162px;border-radius:16px;overflow:hidden;border:3px solid #5960dd;box-shadow:0 10px 24px rgba(15,23,60,.2);background:#eef2ff;display:flex;align-items:center;justify-content:center}
 #avatarCanvas{width:100%;height:100%;display:block;image-rendering:pixelated}
 .member-tag{font-family:"JetBrains Mono","Cairo",monospace;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(90deg,#00629b,#5b4ce0);padding:4px 11px;border-radius:999px;box-shadow:0 4px 12px rgba(0,98,155,.28)}
 .info-col{flex:1;min-width:0;padding-top:2px;display:flex;flex-direction:column;justify-content:space-between;height:194px}
 .info-top{display:flex;flex-direction:column;gap:8px}
+.info-head-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .info-label{font-family:"JetBrains Mono","Cairo",monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.55}
+.class-pill{background:rgba(91,76,224,.12);border:1px solid rgba(91,76,224,.28);color:#523ec8;font-family:"JetBrains Mono","Cairo",monospace;font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.05em}
+#card.theme-dark .class-pill{background:rgba(127,107,255,.22);border-color:rgba(165,180,252,.35);color:#ddd6fe}
 #iname{font-size:28px;font-weight:800;line-height:1.12;letter-spacing:-.02em;word-break:break-word;max-height:64px;overflow:hidden}
 #imajor{display:inline-flex;align-items:center;align-self:flex-start;font-size:13.5px;font-weight:700;color:#00629b;background:rgba(0,98,155,.1);border:1px solid rgba(0,98,155,.22);padding:5px 12px;border-radius:999px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #card.theme-dark #imajor{color:#7dd3fc;background:rgba(56,189,248,.16);border-color:rgba(125,211,252,.32)}
@@ -76,7 +76,7 @@ button.ghost-danger:hover{background:rgba(244,63,94,.2)}
 .meta-v{font-family:"JetBrains Mono","Cairo",monospace;font-size:13px;font-weight:700}
 .barcode{display:flex;align-items:flex-end;gap:2px;height:26px;opacity:.42}
 .barcode span{display:block;height:100%;background:currentColor;border-radius:1px}
-#foot{position:absolute;left:0;right:0;bottom:0;height:13px;background:linear-gradient(90deg,#00629b 0%,#0095d9 35%,#5b4ce0 72%,#7c4dff 100%);pointer-events:none;z-index:1}
+#foot{position:absolute;left:0;right:0;bottom:0;height:12px;background:linear-gradient(90deg,#00629b 0%,#0095d9 35%,#5b4ce0 72%,#7c4dff 100%);pointer-events:none;z-index:1}
 .it{position:absolute;cursor:grab;line-height:1;white-space:nowrap;touch-action:none;transform-origin:center center;z-index:5;display:inline-flex;align-items:center;justify-content:center}
 .it:active{cursor:grabbing}
 .badge{padding:7px 14px;border-radius:999px;font-weight:800;font-size:14px;color:#fff;box-shadow:0 6px 16px rgba(10,16,40,.25);letter-spacing:.01em}
@@ -128,19 +128,28 @@ button.ghost-danger:hover{background:rgba(244,63,94,.2)}
 .sub-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:8px}
 .modal-ov{position:fixed;inset:0;background:rgba(5,9,24,.84);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:18px;z-index:60;overflow:auto}
 .modal-ov.on{display:flex}
-.modal-box{background:var(--panel-solid);border:1px solid var(--line);border-radius:22px;padding:20px;max-width:740px;width:100%;box-shadow:0 24px 64px rgba(0,0,0,.6)}
+.modal-box{background:var(--panel-solid);border:1px solid var(--line);border-radius:22px;padding:20px;max-width:760px;width:100%;box-shadow:0 24px 64px rgba(0,0,0,.6)}
 .modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
 .modal-head h2{margin:0;font-size:19px}
 .modal-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;align-items:center}
 @media (max-width:720px){.modal-grid{grid-template-columns:1fr}}
 .modal-preview img{width:100%;border-radius:14px;display:block;box-shadow:0 12px 32px rgba(0,0,0,.4)}
 .qr-card{background:rgba(8,13,32,.72);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
-#qrBox{background:#fff;padding:10px;border-radius:12px;min-width:168px;min-height:168px;display:flex;align-items:center;justify-content:center}
-#qrBox img,#qrBox canvas{display:block}
-.status-pill{font-size:12px;font-weight:700;padding:6px 11px;border-radius:10px;background:rgba(56,189,248,.14);color:#7dd3fc;line-height:1.4}
-.status-pill.ok{background:rgba(16,185,129,.16);color:#6ee7b7}
-.status-pill.err{background:rgba(244,63,94,.16);color:#fda4af}
+#qrBox{background:#fff;padding:10px;border-radius:12px;display:flex;align-items:center;justify-content:center}
+#qrBox canvas{display:block;width:164px;height:164px}
+.status-pill{font-size:12px;font-weight:700;padding:6px 11px;border-radius:10px;background:rgba(16,185,129,.16);color:#6ee7b7;line-height:1.4}
 .modal-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;margin-top:16px}
+.delivery-view{display:none;min-height:100vh;padding:24px 16px;align-items:center;justify-content:center}
+.delivery-view.on{display:flex}
+.delivery-card{background:var(--panel-solid);border:1px solid var(--line);border-radius:22px;padding:20px;max-width:540px;width:100%;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.55);display:flex;flex-direction:column;gap:14px;align-items:center}
+.delivery-card h2{margin:0;font-size:20px}
+.delivery-card p{margin:0;font-size:13px;color:var(--mute)}
+.delivery-img-wrap{width:100%;border-radius:16px;overflow:hidden;box-shadow:0 14px 36px rgba(0,0,0,.45);background:rgba(255,255,255,.04);min-height:200px;display:flex;align-items:center;justify-content:center}
+.delivery-img-wrap img{width:100%;display:block;-webkit-user-select:auto;user-select:auto}
+.delivery-actions{display:flex;flex-wrap:wrap;gap:10px;width:100%;justify-content:center}
+.delivery-actions button{flex:1;min-width:160px;padding:12px 16px;font-size:14px}
+body.delivery-mode .topbar,body.delivery-mode .editor-card,body.delivery-mode .item-controls,body.delivery-mode .send-bar{display:none}
+body.delivery-mode .workspace{position:fixed;left:-9999px;top:0;width:640px;opacity:0;pointer-events:none}
 .spinner{width:28px;height:28px;border:3px solid rgba(148,169,235,.25);border-top-color:#38bdf8;border-radius:50%;animation:spin .75s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 </style>
@@ -150,11 +159,11 @@ button.ghost-danger:hover{background:rgba(244,63,94,.2)}
 <header class="topbar">
   <div class="brand">
     <div class="brand-banner">
-      <img src="ieee logo.png" alt="IEEE ASU Student Branch" onerror="this.onerror=null;this.src='ieee-logo.png';">
+      <canvas id="navLogoCanvas" width="352" height="92"></canvas>
     </div>
     <div class="brand-text">
       <h1 data-i18n="title">Design Your Student ID Card</h1>
-      <p data-i18n="subtitle">Create your pixel avatar, customize with IEEE stickers, and save it to your device</p>
+      <p data-i18n="subtitle">Create your pixel avatar, customize with IEEE stickers, and scan to save to your phone</p>
     </div>
   </div>
   <div class="top-actions">
@@ -171,9 +180,7 @@ button.ghost-danger:hover{background:rgba(244,63,94,.2)}
           <div id="holder">
             <div id="card">
               <div id="band">
-                <img class="logo-bg" src="ieee logo.png" alt="IEEE ASU Student Branch" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                <div class="logo-fallback">IEEE ASU Student Branch</div>
-                <span class="class-pill" id="classPill">CLASS OF 2030</span>
+                <canvas id="bandCanvas" width="1200" height="260"></canvas>
               </div>
               <div class="card-body">
                 <div class="avatar-slot">
@@ -184,11 +191,12 @@ button.ghost-danger:hover{background:rgba(244,63,94,.2)}
                 </div>
                 <div class="info-col">
                   <div class="info-top">
-                    <div>
+                    <div class="info-head-row">
                       <div class="info-label" id="lblName">STUDENT NAME</div>
-                      <div id="iname" dir="auto">Your Name</div>
+                      <span class="class-pill" id="classPill">CLASS OF 2030</span>
                     </div>
-                    <div id="imajor" dir="auto">Data Science &amp; AI</div>
+                    <div id="iname" dir="auto">Your Name</div>
+                    <div id="imajor" dir="auto">Your Major</div>
                   </div>
                   <div class="meta-strip">
                     <div class="meta-group">
@@ -240,15 +248,15 @@ button.ghost-danger:hover{background:rgba(244,63,94,.2)}
       <div class="field-grid">
         <div class="field">
           <label for="fn" data-i18n="fieldName">Full Name</label>
-          <input type="text" id="fn" maxlength="26" placeholder="e.g. Sara Ahmad">
+          <input type="text" id="fn" maxlength="26" placeholder="Your Name">
         </div>
         <div class="field">
           <label for="fm" data-i18n="fieldMajor">Major</label>
-          <input type="text" id="fm" maxlength="30" placeholder="e.g. Data Science & AI">
+          <input type="text" id="fm" maxlength="30" placeholder="Your Major">
         </div>
         <div class="field">
           <label for="fi" data-i18n="fieldId">University ID</label>
-          <input type="text" id="fi" maxlength="14" inputmode="numeric" placeholder="e.g. 202610420">
+          <input type="text" id="fi" maxlength="14" inputmode="numeric" placeholder="202600000">
         </div>
       </div>
       <div class="section-title" data-i18n="cardTheme">Card Style</div>
@@ -283,9 +291,9 @@ button.ghost-danger:hover{background:rgba(244,63,94,.2)}
         <img id="outImg" alt="IEEE ASU Student Card">
       </div>
       <div class="qr-card">
-        <div id="qrBox"><div class="spinner"></div></div>
-        <div class="status-pill" id="deliveryStatus">Preparing your card...</div>
-        <button id="btnRetry" style="display:none" data-i18n="retryBtn">Retry QR</button>
+        <div id="qrBox"></div>
+        <div class="status-pill" id="qrStatus" data-i18n="qrReady">Scan with your phone camera to download your card!</div>
+        <button id="btnCopyLink" style="width:100%" data-i18n="copyLink">🔗 Copy Download Link</button>
       </div>
     </div>
     <div class="modal-actions">
@@ -296,12 +304,24 @@ button.ghost-danger:hover{background:rgba(244,63,94,.2)}
   </div>
 </div>
 
+<section class="delivery-view" id="deliveryView">
+  <div class="delivery-card">
+    <h2 id="delivTitle">Your IEEE ASU Student Card</h2>
+    <p id="delivSub">Tap Save / Download below or press and hold the image to save to your gallery.</p>
+    <div class="delivery-img-wrap" id="delivWrap">
+      <div class="spinner"></div>
+    </div>
+    <div class="delivery-actions">
+      <button class="pri" id="btnDelivSave">⬇ Save / Download PNG</button>
+      <button id="btnDelivNew">✦ Design Your Own Card</button>
+    </div>
+  </div>
+</section>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <script>
 (function(){
-const SCRIPT_URL = '';
-
 const $ = id => document.getElementById(id);
 const card = $('card');
 const holder = $('holder');
@@ -316,11 +336,13 @@ let scaleFactor = 1;
 let selected = null;
 let zCounter = 10;
 let lastDataUrl = '';
+let lastShareUrl = '';
+let lastBlob = null;
 
 const i18n = {
   en: {
     title: 'Design Your Student ID Card',
-    subtitle: 'Create your pixel avatar, customize with IEEE stickers, and save it to your device',
+    subtitle: 'Create your pixel avatar, customize with IEEE stickers, and scan to save to your phone',
     nextStudent: '↻ Next Student',
     selectHint: 'Click any sticker or badge on the card to drag, smoothly rotate, or resize',
     finishBtn: '✦ Finish & Get Card',
@@ -336,14 +358,16 @@ const i18n = {
     stickersTitle: 'Tech & Campus Stickers',
     badgesTitle: 'IEEE & ASU Badges',
     modalTitle: 'Your IEEE ASU Card is Ready!',
-    retryBtn: 'Retry QR',
+    qrReady: 'Scan with your phone camera to download your card!',
+    copyLink: '🔗 Copy Download Link',
+    copied: '✔ Link Copied!',
     backEdit: 'Back to Edit',
     downloadPng: '⬇ Download PNG',
-    namePh: 'e.g. Sara Ahmad',
-    majorPh: 'e.g. Data Science & AI',
-    idPh: 'e.g. 202610420',
+    namePh: 'Your Name',
+    majorPh: 'Your Major',
+    idPh: '202600000',
     defName: 'Your Name',
-    defMajor: 'Data Science & AI',
+    defMajor: 'Your Major',
     defId: '202600000',
     classPill: 'CLASS OF 2030',
     memberTag: 'FUTURE ENGINEER',
@@ -352,10 +376,6 @@ const i18n = {
     size: 'Size',
     del: 'Delete',
     front: 'Front',
-    sending: 'Uploading & generating QR code...',
-    qrReady: 'Scan QR to save to your phone!',
-    noScript: 'Paste your Apps Script URL in index.html to activate the QR code. PNG download is ready!',
-    sendErr: 'Could not generate QR code. You can retry or download the PNG directly.',
     langBtn: 'عربي',
     secGender: 'Base Style',
     secSkin: 'Skin Tone',
@@ -366,11 +386,15 @@ const i18n = {
     secAcc: 'Glasses & Accessories',
     secOutfit: 'Outfit',
     secOutfitColor: 'Outfit Color',
-    secBg: 'Avatar Background'
+    secBg: 'Avatar Background',
+    delivTitle: 'Your IEEE ASU Student Card',
+    delivSub: 'Tap Save / Download below or press and hold the image to save it to your gallery.',
+    delivSave: '⬇ Save / Download PNG',
+    delivNew: '✦ Design Your Own Card'
   },
   ar: {
     title: 'صمّم بطاقتك الجامعية',
-    subtitle: 'صمّم شخصيتك البكسل، أضف ستيكرات IEEE، واحفظ بطاقتك فوراً على جهازك',
+    subtitle: 'صمّم شخصيتك البكسل، أضف ستيكرات IEEE، وامسح الكود لحفظها على هاتفك',
     nextStudent: '↻ طالب جديد',
     selectHint: 'اضغط على أي ستيكر أو شارة لتحريكها أو تدويرها وتكبيرها بسلاسة',
     finishBtn: '✦ إنهاء وحفظ البطاقة',
@@ -386,14 +410,16 @@ const i18n = {
     stickersTitle: 'ستيكرات تقنية وجامعية',
     badgesTitle: 'شارات IEEE و ASU',
     modalTitle: 'بطاقتك من IEEE ASU جاهزة!',
-    retryBtn: 'إعادة المحاولة',
+    qrReady: 'امسح الكود بكاميرا هاتفك لتحميل بطاقتك فوراً!',
+    copyLink: '🔗 نسخ رابط التحميل',
+    copied: '✔ تم نسخ الرابط!',
     backEdit: 'رجوع للتعديل',
     downloadPng: '⬇ حفظ الصورة PNG',
-    namePh: 'مثال: سارة أحمد',
-    majorPh: 'مثال: علم البيانات والذكاء الاصطناعي',
-    idPh: 'مثال: 202610420',
-    defName: 'اسمك هون',
-    defMajor: 'علم البيانات والذكاء الاصطناعي',
+    namePh: 'اسمك',
+    majorPh: 'تخصصك',
+    idPh: '202600000',
+    defName: 'اسمك',
+    defMajor: 'تخصصك',
     defId: '202600000',
     classPill: 'دفعة 2030',
     memberTag: 'مهندس المستقبل',
@@ -402,10 +428,6 @@ const i18n = {
     size: 'الحجم',
     del: 'حذف',
     front: 'للأمام',
-    sending: 'جاري تجهيز رمز QR...',
-    qrReady: 'امسح الكود لحفظ البطاقة على هاتفك!',
-    noScript: 'أضف رابط Google Apps Script لتفعيل رمز QR. التحميل المباشر جاهز!',
-    sendErr: 'تعذر تجهيز رمز QR. يمكنك إعادة المحاولة أو حفظ الصورة مباشرة.',
     langBtn: 'English',
     secGender: 'النمط',
     secSkin: 'لون البشرة',
@@ -416,7 +438,11 @@ const i18n = {
     secAcc: 'النظارات والإكسسوارات',
     secOutfit: 'اللباس',
     secOutfitColor: 'لون اللباس',
-    secBg: 'خلفية الشخصية'
+    secBg: 'خلفية الشخصية',
+    delivTitle: 'بطاقتك الجامعية من IEEE ASU',
+    delivSub: 'اضغط على زر الحفظ بالأسفل أو اضغط مطولاً على الصورة لحفظها في الاستوديو.',
+    delivSave: '⬇ حفظ / تحميل البطاقة',
+    delivNew: '✦ صمّم بطاقة جديدة'
   }
 };
 
@@ -543,6 +569,69 @@ const BG_STYLES = [
   { id: 'peach', en: 'Warm Peach', ar: 'خوخي' },
   { id: 'slate', en: 'Dark Tech', ar: 'تقني داكن' }
 ];
+
+function drawFallbackBanner(canvas){
+  const bctx = canvas.getContext('2d');
+  const w = canvas.width, h = canvas.height;
+  const g = bctx.createLinearGradient(0, 0, w, h);
+  g.addColorStop(0, '#5a63d8');
+  g.addColorStop(0.5, '#714be8');
+  g.addColorStop(1, '#548de3');
+  bctx.fillStyle = g;
+  bctx.fillRect(0, 0, w, h);
+  bctx.fillStyle = '#ffffff';
+  bctx.textAlign = 'center';
+  bctx.textBaseline = 'middle';
+  bctx.font = `800 ${Math.round(h * 0.34)}px "Space Grotesk", sans-serif`;
+  bctx.fillText('IEEE', w / 2, h * 0.42);
+  bctx.font = `600 ${Math.round(h * 0.16)}px "Space Grotesk", sans-serif`;
+  bctx.fillText('ASU Student Branch', w / 2, h * 0.76);
+}
+
+function drawCroppedBanner(canvas, img){
+  const bctx = canvas.getContext('2d');
+  const cw = canvas.width, ch = canvas.height;
+  const trimX = img.naturalWidth * 0.028;
+  const trimY = img.naturalHeight * 0.04;
+  const sw = img.naturalWidth - trimX * 2;
+  const sh = img.naturalHeight - trimY * 2;
+  const targetRatio = cw / ch;
+  const srcRatio = sw / sh;
+  let sx = trimX, sy = trimY, dw = sw, dh = sh;
+  if(srcRatio > targetRatio){
+    dw = sh * targetRatio;
+    sx = trimX + (sw - dw) / 2;
+  } else {
+    dh = sw / targetRatio;
+    sy = trimY + (sh - dh) / 2;
+  }
+  bctx.imageSmoothingEnabled = true;
+  bctx.imageSmoothingQuality = 'high';
+  bctx.drawImage(img, sx, sy, dw, dh, 0, 0, cw, ch);
+}
+
+function loadBrandImages(){
+  const bandCv = $('bandCanvas');
+  const navCv = $('navLogoCanvas');
+  drawFallbackBanner(bandCv);
+  drawFallbackBanner(navCv);
+  return new Promise(resolve => {
+    const sources = ['ieee logo.png', 'ieee-logo.png'];
+    let idx = 0;
+    const tryNext = () => {
+      if(idx >= sources.length){ resolve(); return; }
+      const img = new Image();
+      img.onload = () => {
+        drawCroppedBanner(bandCv, img);
+        drawCroppedBanner(navCv, img);
+        resolve();
+      };
+      img.onerror = () => { idx++; tryNext(); };
+      img.src = sources[idx];
+    };
+    tryNext();
+  });
+}
 
 function px(x, y, c, w = 1, h = 1){
   ctx.fillStyle = c;
@@ -846,7 +935,7 @@ function drawAvatar(){
 function fit(){
   scaleFactor = Math.min(1, wrap.clientWidth / 600);
   holder.style.transform = `scale(${scaleFactor})`;
-  wrap.style.height = (378 * scaleFactor) + 'px';
+  wrap.style.height = (400 * scaleFactor) + 'px';
   syncGizmo();
 }
 window.addEventListener('resize', fit);
@@ -876,19 +965,19 @@ function renderThemes(){
 function renderDecor(){
   const sg = $('stickerGrid');
   sg.innerHTML = '';
-  stickers.forEach(s => {
+  stickers.forEach((s, idx) => {
     const b = document.createElement('button');
     b.textContent = s;
-    b.onclick = () => addItem('s', s);
+    b.onclick = () => addItem('s', idx);
     sg.appendChild(b);
   });
   const bg = $('badgeGrid');
   bg.innerHTML = '';
-  badges.forEach(([txt, col]) => {
+  badges.forEach(([txt, col], idx) => {
     const b = document.createElement('button');
     b.textContent = txt;
     b.style.background = col;
-    b.onclick = () => addItem('b', txt, col);
+    b.onclick = () => addItem('b', idx);
     bg.appendChild(b);
   });
 }
@@ -1040,8 +1129,7 @@ function renderItemControls(){
 }
 
 function normalizeAngle(deg){
-  let a = ((deg + 180) % 360 + 360) % 360 - 180;
-  return Math.round(a);
+  return Math.round(((deg + 180) % 360 + 360) % 360 - 180);
 }
 
 function setRot(deg){
@@ -1075,25 +1163,28 @@ function selectItem(el){
   renderItemControls();
 }
 
-function addItem(kind, val, col){
+function addItem(kind, idx, preset){
   const el = document.createElement('div');
   el.className = 'it';
+  el.dataset.kind = kind;
+  el.dataset.idx = idx;
   if(kind === 's'){
-    el.textContent = val;
+    el.textContent = stickers[idx] || '⚡';
     el.style.fontSize = '50px';
   } else {
-    el.textContent = val;
+    const b = badges[idx] || badges[0];
+    el.textContent = b[0];
     el.classList.add('badge');
-    el.style.background = col;
+    el.style.background = b[1];
   }
-  el.dataset.x = Math.round(320 + (Math.random() - 0.5) * 140);
-  el.dataset.y = Math.round(255 + (Math.random() - 0.5) * 80);
-  el.dataset.sc = '1';
-  el.dataset.rot = '0';
+  el.dataset.x = preset ? preset.x : Math.round(330 + (Math.random() - 0.5) * 140);
+  el.dataset.y = preset ? preset.y : Math.round(285 + (Math.random() - 0.5) * 70);
+  el.dataset.sc = preset ? preset.sc : '1';
+  el.dataset.rot = preset ? preset.rot : '0';
   el.style.zIndex = ++zCounter;
   card.appendChild(el);
   applyItemTransform(el);
-  selectItem(el);
+  if(!preset) selectItem(el);
 }
 
 let action = null;
@@ -1152,7 +1243,7 @@ window.addEventListener('pointermove', ev => {
     const nx = action.origX + (ev.clientX - action.startX) / scaleFactor;
     const ny = action.origY + (ev.clientY - action.startY) / scaleFactor;
     action.el.dataset.x = Math.max(20, Math.min(580, nx)).toFixed(1);
-    action.el.dataset.y = Math.max(20, Math.min(358, ny)).toFixed(1);
+    action.el.dataset.y = Math.max(20, Math.min(380, ny)).toFixed(1);
     applyItemTransform(action.el);
   } else if(action.type === 'rot'){
     let deg = Math.atan2(ev.clientY - action.cy, ev.clientX - action.cx) * 180 / Math.PI + 90;
@@ -1218,6 +1309,10 @@ function setLanguage(nextLang){
   $('classPill').textContent = t.classPill;
   $('memberTag').textContent = t.memberTag;
   $('lblName').textContent = t.lblName;
+  $('delivTitle').textContent = t.delivTitle;
+  $('delivSub').textContent = t.delivSub;
+  $('btnDelivSave').textContent = t.delivSave;
+  $('btnDelivNew').textContent = t.delivNew;
   syncCardFields();
   renderAvatarControls();
   renderItemControls();
@@ -1225,6 +1320,129 @@ function setLanguage(nextLang){
 
 $('btnLang').onclick = () => setLanguage(lang === 'en' ? 'ar' : 'en');
 $('btnRand').onclick = randomizeAvatar;
+
+function encodeState(obj){
+  const bytes = new TextEncoder().encode(JSON.stringify(obj));
+  let bin = '';
+  bytes.forEach(b => bin += String.fromCharCode(b));
+  return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+function decodeState(str){
+  let b64 = str.replace(/-/g, '+').replace(/_/g, '/');
+  while(b64.length % 4) b64 += '=';
+  const bin = atob(b64);
+  const bytes = new Uint8Array(bin.length);
+  for(let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return JSON.parse(new TextDecoder().decode(bytes));
+}
+
+function buildShareUrl(){
+  const themeIdx = Math.max(0, cardThemes.findIndex(t => t.id === currentTheme));
+  const items = Array.from(card.querySelectorAll('.it')).slice(0, 14).map(el => [
+    el.dataset.kind === 's' ? 0 : 1,
+    parseInt(el.dataset.idx, 10) || 0,
+    Math.round(parseFloat(el.dataset.x)),
+    Math.round(parseFloat(el.dataset.y)),
+    Math.round(parseFloat(el.dataset.rot)),
+    Math.round(parseFloat(el.dataset.sc) * 100)
+  ]);
+  const payload = {
+    n: $('fn').value.trim(),
+    m: $('fm').value.trim(),
+    i: $('fi').value.trim(),
+    t: themeIdx,
+    l: lang === 'ar' ? 1 : 0,
+    a: [
+      avatar.gender === 'male' ? 1 : 0,
+      avatar.skin,
+      Math.max(0, HAIR_STYLES.findIndex(x => x.id === avatar.hair)),
+      avatar.hairColor,
+      Math.max(0, EXPR_STYLES.findIndex(x => x.id === avatar.expr)),
+      avatar.eyeColor,
+      Math.max(0, ACC_STYLES.findIndex(x => x.id === avatar.acc)),
+      Math.max(0, OUTFIT_STYLES.findIndex(x => x.id === avatar.outfit)),
+      avatar.outfitColor,
+      Math.max(0, BG_STYLES.findIndex(x => x.id === avatar.bg))
+    ],
+    d: items
+  };
+  const base = location.protocol === 'file:'
+    ? 'https://naheelalhaddad.github.io/ieeedesignyourownid/'
+    : (location.origin + location.pathname);
+  return base + '?card=' + encodeState(payload);
+}
+
+function renderQrCanvas(url){
+  const qrBox = $('qrBox');
+  qrBox.innerHTML = '';
+  if(typeof qrcode === 'undefined'){
+    qrBox.textContent = 'QR unavailable';
+    return;
+  }
+  const qr = qrcode(0, 'L');
+  qr.addData(url);
+  qr.make();
+  const count = qr.getModuleCount();
+  const size = 240;
+  const pad = 12;
+  const cell = (size - pad * 2) / count;
+  const cv = document.createElement('canvas');
+  cv.width = size;
+  cv.height = size;
+  const qctx = cv.getContext('2d');
+  qctx.fillStyle = '#ffffff';
+  qctx.fillRect(0, 0, size, size);
+  qctx.fillStyle = '#0e1b38';
+  for(let r = 0; r < count; r++){
+    for(let c = 0; c < count; c++){
+      if(qr.isDark(r, c)){
+        qctx.fillRect(Math.floor(pad + c * cell), Math.floor(pad + r * cell), Math.ceil(cell), Math.ceil(cell));
+      }
+    }
+  }
+  qrBox.appendChild(cv);
+}
+
+function downloadPng(){
+  if(!lastDataUrl) return;
+  const a = document.createElement('a');
+  const safeName = ($('fn').value.trim() || 'ieee-asu-card').replace(/[^a-zA-Z0-9\u0600-\u06FF_-]+/g, '-');
+  a.download = safeName + '-IEEE-ASU.png';
+  a.href = lastDataUrl;
+  a.click();
+}
+
+async function saveOrSharePng(){
+  if(!lastDataUrl) return;
+  const safeName = ($('fn').value.trim() || 'ieee-asu-card').replace(/[^a-zA-Z0-9\u0600-\u06FF_-]+/g, '-') + '-IEEE-ASU.png';
+  if(lastBlob && navigator.canShare){
+    try{
+      const file = new File([lastBlob], safeName, { type: 'image/png' });
+      if(navigator.canShare({ files: [file] })){
+        await navigator.share({ files: [file], title: 'IEEE ASU Student Card' });
+        return;
+      }
+    } catch(e){}
+  }
+  downloadPng();
+}
+
+async function exportCardCanvas(){
+  selectItem(null);
+  const prevTransform = holder.style.transform;
+  holder.style.transform = 'none';
+  try{
+    const canvas = await html2canvas(card, { scale: 2, backgroundColor: null, useCORS: true });
+    holder.style.transform = prevTransform;
+    lastDataUrl = canvas.toDataURL('image/png');
+    await new Promise(res => canvas.toBlob(b => { lastBlob = b; res(); }, 'image/png'));
+    return lastDataUrl;
+  } catch(err){
+    holder.style.transform = prevTransform;
+    throw err;
+  }
+}
 
 function resetForNextStudent(){
   selectItem(null);
@@ -1243,93 +1461,100 @@ function resetForNextStudent(){
 $('btnReset').onclick = resetForNextStudent;
 $('btnModalNext').onclick = resetForNextStudent;
 
-async function sendToAppsScript(){
-  const t = i18n[lang];
-  const qrBox = $('qrBox');
-  const status = $('deliveryStatus');
-  const retry = $('btnRetry');
-  retry.style.display = 'none';
-
-  if(!SCRIPT_URL){
-    qrBox.innerHTML = '<div style="font-size:36px">📱</div>';
-    status.className = 'status-pill';
-    status.textContent = t.noScript;
-    return;
-  }
-
-  qrBox.innerHTML = '<div class="spinner"></div>';
-  status.className = 'status-pill';
-  status.textContent = t.sending;
-
-  try{
-    const res = await fetch(SCRIPT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({
-        image: lastDataUrl,
-        name: $('fn').value.trim() || 'IEEE ASU Student'
-      })
-    });
-    const data = await res.json();
-    if(!data.ok || !data.url) throw new Error('failed');
-    qrBox.innerHTML = '';
-    new QRCode(qrBox, {
-      text: data.url,
-      width: 152,
-      height: 152,
-      colorDark: '#0e1b38',
-      colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.M
-    });
-    status.className = 'status-pill ok';
-    status.textContent = t.qrReady;
-  } catch(err){
-    qrBox.innerHTML = '<div style="font-size:34px">⚠️</div>';
-    status.className = 'status-pill err';
-    status.textContent = t.sendErr;
-    retry.style.display = 'inline-block';
-  }
-}
-
 $('btnDone').onclick = async () => {
-  selectItem(null);
   if(typeof html2canvas === 'undefined'){
     alert('Export library is still loading. Please check internet connection.');
     return;
   }
-  const prevTransform = holder.style.transform;
-  holder.style.transform = 'none';
   try{
-    const canvas = await html2canvas(card, { scale: 2, backgroundColor: null, useCORS: true });
-    holder.style.transform = prevTransform;
-    lastDataUrl = canvas.toDataURL('image/png');
-    $('outImg').src = lastDataUrl;
+    const dataUrl = await exportCardCanvas();
+    $('outImg').src = dataUrl;
+    lastShareUrl = buildShareUrl();
+    renderQrCanvas(lastShareUrl);
+    $('btnCopyLink').textContent = i18n[lang].copyLink;
     $('modal').classList.add('on');
-    sendToAppsScript();
   } catch(err){
-    holder.style.transform = prevTransform;
     alert('Could not export card image. Please refresh and try again.');
   }
 };
 
-$('btnRetry').onclick = sendToAppsScript;
-$('btnCloseModal').onclick = () => $('modal').classList.remove('on');
-$('btnEdit').onclick = () => $('modal').classList.remove('on');
-
-$('btnDownload').onclick = () => {
-  if(!lastDataUrl) return;
-  const a = document.createElement('a');
-  const safeName = ($('fn').value.trim() || 'ieee-asu-card').replace(/[^a-zA-Z0-9\u0600-\u06FF_-]+/g, '-');
-  a.download = safeName + '-IEEE-ASU.png';
-  a.href = lastDataUrl;
-  a.click();
+$('btnCopyLink').onclick = async () => {
+  if(!lastShareUrl) return;
+  try{
+    await navigator.clipboard.writeText(lastShareUrl);
+    $('btnCopyLink').textContent = i18n[lang].copied;
+    setTimeout(() => { $('btnCopyLink').textContent = i18n[lang].copyLink; }, 2200);
+  } catch(e){
+    prompt('Copy link:', lastShareUrl);
+  }
 };
 
-renderThemes();
-renderDecor();
-randomizeAvatar();
-setLanguage('en');
-fit();
+$('btnCloseModal').onclick = () => $('modal').classList.remove('on');
+$('btnEdit').onclick = () => $('modal').classList.remove('on');
+$('btnDownload').onclick = downloadPng;
+$('btnDelivSave').onclick = saveOrSharePng;
+$('btnDelivNew').onclick = () => { window.location.href = location.origin + location.pathname; };
+
+function hydrateFromQuery(encoded){
+  const p = decodeState(encoded);
+  $('fn').value = p.n || '';
+  $('fm').value = p.m || '';
+  $('fi').value = p.i || '';
+  const th = cardThemes[p.t] || cardThemes[0];
+  applyTheme(th.id);
+  if(Array.isArray(p.a) && p.a.length >= 10){
+    avatar.gender = p.a[0] === 1 ? 'male' : 'female';
+    avatar.skin = Math.min(SKINS.length - 1, Math.max(0, p.a[1]));
+    avatar.hair = (HAIR_STYLES[p.a[2]] || HAIR_STYLES[0]).id;
+    avatar.hairColor = Math.min(HAIR_COLORS.length - 1, Math.max(0, p.a[3]));
+    avatar.expr = (EXPR_STYLES[p.a[4]] || EXPR_STYLES[0]).id;
+    avatar.eyeColor = Math.min(EYE_COLORS.length - 1, Math.max(0, p.a[5]));
+    avatar.acc = (ACC_STYLES[p.a[6]] || ACC_STYLES[0]).id;
+    avatar.outfit = (OUTFIT_STYLES[p.a[7]] || OUTFIT_STYLES[0]).id;
+    avatar.outfitColor = Math.min(OUTFIT_COLORS.length - 1, Math.max(0, p.a[8]));
+    avatar.bg = (BG_STYLES[p.a[9]] || BG_STYLES[0]).id;
+  }
+  setLanguage(p.l === 1 ? 'ar' : 'en');
+  drawAvatar();
+  if(Array.isArray(p.d)){
+    p.d.forEach(([k, idx, x, y, rot, sc]) => {
+      addItem(k === 0 ? 's' : 'b', idx, { x, y, rot, sc: (sc / 100).toFixed(2) });
+    });
+  }
+}
+
+async function init(){
+  renderThemes();
+  renderDecor();
+  const bannerReady = loadBrandImages();
+  const params = new URLSearchParams(window.location.search);
+  const cardParam = params.get('card');
+
+  if(cardParam){
+    document.body.classList.add('delivery-mode');
+    $('deliveryView').classList.add('on');
+    try{
+      hydrateFromQuery(cardParam);
+      await Promise.all([bannerReady, document.fonts ? document.fonts.ready : Promise.resolve()]);
+      const dataUrl = await exportCardCanvas();
+      $('delivWrap').innerHTML = `<img src="${dataUrl}" alt="IEEE ASU Student Card">`;
+    } catch(err){
+      document.body.classList.remove('delivery-mode');
+      $('deliveryView').classList.remove('on');
+      randomizeAvatar();
+      setLanguage('en');
+      fit();
+    }
+    return;
+  }
+
+  randomizeAvatar();
+  setLanguage('en');
+  fit();
+}
+
+init();
 })();
 </script>
 </body>
+</html>
