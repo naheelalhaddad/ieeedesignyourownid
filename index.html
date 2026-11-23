@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IEEE ASU – Design Your Student Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ieee:#00629b;
+  --ieee-bright:#0095d9;
+  --star-1:#533fc9;
+  --star-2:#5c6ce0;
+  --star-3:#4a93db;
+  --bg:#0b1024;
+  --bg-2:#121a36;
+  --panel:rgba(20,28,58,.86);
+  --panel-solid:#161f40;
+  --ink:#f1f5ff;
+  --mute:#9aa8cc;
+  --line:rgba(148,169,235,.22);
+  --accent:#7f6bff;
+  --accent-2:#38bdf8;
+  --danger:#f43f5e;
+  --ok:#10b981;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:radial-gradient(circle at 12% 10%,rgba(99,73,216,.34),transparent 42%),radial-gradient(circle at 88% 12%,rgba(0,149,217,.26),transparent 40%),linear-gradient(160deg,#090d1e 0%,#0f1631 55%,#0b132b 100%);color:var(--ink);font-family:"Space Grotesk","Cairo",system-ui,sans-serif;-webkit-user-select:none;user-select:none}
+body.rtl{font-family:"Cairo","Space Grotesk",system-ui,sans-serif}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 22px;background:rgba(12,18,40,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+.brand{display:flex;align-items:center;gap:14px;min-width:0}
+.brand-banner{height:44px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.22);box-shadow:0 6px 20px rgba(83,63,201,.35);flex-shrink:0;background:linear-gradient(135deg,var(--star-1),var(--star-2),var(--star-3))}
+.brand-banner img{height:100%;width:auto;display:block;transform:scale(1.04)}
+.brand-text h1{margin:0;font-size:18px;font-weight:800;letter-spacing:-.01em;line-height:1.15}
+.brand-text p{margin:2px 0 0;font-size:12px;color:var(--mute)}
+.top-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--ink);border-radius:11px;padding:8px 13px;font-size:13px;font-weight:700;transition:background .15s,border-color .15s,transform .12s,box-shadow .15s}
+button:hover{background:rgba(255,255,255,.12);border-color:rgba(148,169,235,.45)}
+button:active{transform:scale(.97)}
+button.pri{background:linear-gradient(135deg,var(--star-1),var(--ieee));border-color:rgba(127,107,255,.65);color:#fff;box-shadow:0 8px 22px rgba(0,98,155,.35)}
+button.pri:hover{filter:brightness(1.1)}
+button.ghost-danger{color:#fda4af;border-color:rgba(244,63,94,.35);background:rgba(244,63,94,.1)}
+button.ghost-danger:hover{background:rgba(244,63,94,.2)}
+.workspace{max-width:1280px;margin:0 auto;padding:18px 20px 26px;display:grid;grid-template-columns:minmax(500px,1.12fr) minmax(380px,.88fr);gap:20px;align-items:start}
+@media (max-width:980px){.workspace{grid-template-columns:1fr;padding:14px}}
+.left-col{position:sticky;top:78px;display:flex;flex-direction:column;gap:14px}
+@media (max-width:980px){.left-col{position:static}}
+.stage-card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px;backdrop-filter:blur(12px);box-shadow:0 16px 40px rgba(3,8,24,.45)}
+.stage{display:flex;justify-content:center;align-items:center;position:relative;padding:6px 0}
+#wrap{width:100%;max-width:600px;position:relative;touch-action:none}
+#holder{transform-origin:top left;position:relative;width:600px;height:378px}
+#card{position:relative;width:600px;height:378px;border-radius:22px;overflow:hidden;background:#ffffff;color:#0e1b38;box-shadow:0 18px 46px rgba(4,9,30,.52);direction:ltr;font-family:"Space Grotesk","Cairo",sans-serif}
+#card::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(0,98,155,.09) 1px,transparent 1px);background-size:18px 18px;pointer-events:none;z-index:0}
+#card.theme-dark::before{background-image:radial-gradient(rgba(165,180,252,.14) 1px,transparent 1px)}
+#band{position:relative;height:86px;width:100%;background:linear-gradient(135deg,#523ec8 0%,#5f63de 52%,#4c92da 100%);overflow:hidden;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:1}
+#band img.logo-bg{width:100%;height:100%;object-fit:cover;transform:scale(1.04);display:block}
+#band .logo-fallback{display:none;align-items:center;gap:12px;color:#fff;font-weight:800;font-size:22px;letter-spacing:.02em}
+.class-pill{position:absolute;right:16px;top:12px;background:rgba(10,16,42,.48);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.32);color:#fff;font-family:"JetBrains Mono","Cairo",monospace;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:.04em}
+.card-body{position:relative;z-index:1;display:flex;gap:22px;padding:22px 24px 0;pointer-events:none}
+.avatar-slot{width:142px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:7px}
+.avatar-frame{width:138px;height:166px;border-radius:16px;overflow:hidden;border:3px solid #5960dd;box-shadow:0 10px 24px rgba(15,23,60,.18);background:#eef2ff;display:flex;align-items:center;justify-content:center}
+#avatarCanvas{width:100%;height:100%;display:block;image-rendering:pixelated}
+.member-tag{font-family:"JetBrains Mono","Cairo",monospace;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(90deg,#00629b,#5b4ce0);padding:3px 10px;border-radius:999px}
+.info-col{flex:1;min-width:0;padding-top:4px;display:flex;flex-direction:column;gap:8px}
+.info-label{font-family:"JetBrains Mono","Cairo",monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.55}
+#iname{font-size:29px;font-weight:800;line-height:1.12;letter-spacing:-.02em;word-break:break-word;max-height:66px;overflow:hidden}
+#imajor{display:inline-flex;align-items:center;align-self:flex-start;font-size:14px;font-weight:700;color:#00629b;background:rgba(0,98,155,.1);border:1px solid rgba(0,98,155,.22);padding:5px 12px;border-radius:999px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#card.theme-dark #imajor{color:#7dd3fc;background:rgba(56,189,248,.16);border-color:rgba(125,211,252,.3)}
+.id-row{margin-top:4px;display:flex;align-items:center;gap:8px;font-family:"JetBrains Mono","Cairo",monospace;font-size:13px;font-weight:700;opacity:.82}
+.id-chip{padding:2px 7px;border-radius:6px;background:rgba(91,76,224,.14);color:#523ec8;font-size:11px}
+#card.theme-dark .id-chip{background:rgba(127,107,255,.24);color:#c4b5fd}
+#foot{position:absolute;left:0;right:0;bottom:0;height:14px;background:linear-gradient(90deg,#00629b 0%,#0095d9 35%,#5b4ce0 72%,#7c4dff 100%);pointer-events:none;z-index:1}
+.it{position:absolute;cursor:grab;line-height:1;white-space:nowrap;touch-action:none;transform-origin:center center;z-index:5;display:inline-flex;align-items:center;justify-content:center}
+.it:active{cursor:grabbing}
+.badge{padding:7px 14px;border-radius:999px;font-weight:800;font-size:14px;color:#fff;box-shadow:0 6px 16px rgba(10,16,40,.25);letter-spacing:.01em}
+#gizmo{position:absolute;pointer-events:none;z-index:20;display:none;transform-origin:center center;border:2px dashed #38bdf8;border-radius:10px;box-shadow:0 0 0 1px rgba(11,16,36,.4)}
+#gizmo.on{display:block}
+.g-stem{position:absolute;left:50%;top:-24px;width:2px;height:24px;background:#38bdf8;transform:translateX(-50%)}
+.g-rot{position:absolute;left:50%;top:-38px;width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#5b4ce0,#0095d9);color:#fff;border:2px solid #fff;transform:translateX(-50%);pointer-events:auto;cursor:grab;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+.g-rot:active{cursor:grabbing}
+.g-scale{position:absolute;right:-11px;bottom:-11px;width:22px;height:22px;border-radius:50%;background:#00629b;color:#fff;border:2px solid #fff;pointer-events:auto;cursor:nwse-resize;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;box-shadow:0 4px 10px rgba(0,0,0,.4)}
+.g-del{position:absolute;right:-11px;top:-11px;width:22px;height:22px;border-radius:50%;background:#f43f5e;color:#fff;border:2px solid #fff;pointer-events:auto;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;box-shadow:0 4px 10px rgba(0,0,0,.4)}
+.item-controls{margin-top:12px;padding:10px 12px;border-radius:14px;background:rgba(8,13,32,.62);border:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;gap:10px;min-height:50px}
+.item-controls.empty{justify-content:center;color:var(--mute);font-size:12px}
+.ctrl-group{display:flex;align-items:center;gap:7px;flex:1;min-width:170px}
+.ctrl-group label{font-size:11px;font-weight:700;color:var(--mute);white-space:nowrap}
+.ctrl-group input[type=range]{flex:1;accent-color:#5c6ce0;cursor:pointer}
+.ctrl-val{font-family:"JetBrains Mono",monospace;font-size:11px;color:#93c5fd;min-width:38px;text-align:center}
+.mini-btns{display:flex;gap:5px}
+.mini-btns button{padding:5px 9px;font-size:12px;border-radius:8px}
+.send-bar{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.send-bar input[type=email]{flex:1;min-width:210px;border:1px solid var(--line);background:rgba(7,12,28,.75);color:var(--ink);border-radius:12px;padding:11px 14px;font:inherit;font-size:14px;direction:ltr;-webkit-user-select:text;user-select:text}
+.send-bar input:focus{outline:2px solid var(--accent-2);border-color:transparent}
+.send-bar button.pri{padding:11px 20px;font-size:14px;border-radius:12px;white-space:nowrap}
+.editor-card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:16px;backdrop-filter:blur(12px);box-shadow:0 16px 40px rgba(3,8,24,.45)}
+.main-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.main-tabs button{padding:10px 8px;border-radius:12px;font-size:13px}
+.main-tabs button.on{background:linear-gradient(135deg,var(--star-1),var(--ieee));border-color:rgba(127,107,255,.7);color:#fff;box-shadow:0 6px 18px rgba(83,63,201,.32)}
+.pane{display:none}
+.pane.on{display:block}
+.field-grid{display:flex;flex-direction:column;gap:12px}
+.field label{display:block;font-size:12px;font-weight:700;color:var(--mute);margin-bottom:5px}
+.field input[type=text]{width:100%;border:1px solid var(--line);background:rgba(7,12,28,.72);color:var(--ink);border-radius:12px;padding:10px 13px;font:inherit;font-size:14px;-webkit-user-select:text;user-select:text}
+.field input[type=text]:focus{outline:2px solid var(--accent-2);border-color:transparent}
+.section-title{font-size:12px;font-weight:800;color:#c7d2fe;text-transform:uppercase;letter-spacing:.06em;margin:14px 0 8px;display:flex;align-items:center;justify-content:space-between}
+.section-title:first-child{margin-top:0}
+.theme-row{display:flex;flex-wrap:wrap;gap:9px}
+.sw{width:38px;height:38px;border-radius:12px;border:2px solid rgba(255,255,255,.22);padding:0;position:relative}
+.sw.on{border-color:#38bdf8;box-shadow:0 0 0 3px rgba(56,189,248,.3)}
+.chip-grid{display:flex;flex-wrap:wrap;gap:7px}
+.chip{padding:7px 11px;border-radius:10px;font-size:12px;font-weight:700}
+.chip.on{background:linear-gradient(135deg,rgba(91,76,224,.88),rgba(0,98,155,.92));border-color:#7dd3fc;color:#fff}
+.dot-row{display:flex;flex-wrap:wrap;gap:7px}
+.dot{width:28px;height:28px;border-radius:50%;border:2px solid rgba(255,255,255,.25);padding:0}
+.dot.on{border-color:#fff;box-shadow:0 0 0 3px rgba(56,189,248,.55);transform:scale(1.08)}
+.avatar-scroll{max-height:530px;overflow-y:auto;padding-inline-end:4px}
+.avatar-scroll::-webkit-scrollbar{width:6px}
+.avatar-scroll::-webkit-scrollbar-thumb{background:rgba(148,169,235,.28);border-radius:99px}
+.sticker-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.sticker-grid button{font-size:25px;padding:9px 4px;border-radius:12px;background:rgba(255,255,255,.05)}
+.badge-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.badge-grid button{border:0;color:#fff;font-size:12px;padding:8px 13px;border-radius:999px;box-shadow:0 4px 12px rgba(0,0,0,.22)}
+.sub-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:8px}
+.modal-ov{position:fixed;inset:0;background:rgba(5,9,24,.84);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:18px;z-index:60;overflow:auto}
+.modal-ov.on{display:flex}
+.modal-box{background:var(--panel-solid);border:1px solid var(--line);border-radius:22px;padding:20px;max-width:740px;width:100%;box-shadow:0 24px 64px rgba(0,0,0,.6)}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.modal-head h2{margin:0;font-size:19px}
+.modal-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;align-items:center}
+@media (max-width:720px){.modal-grid{grid-template-columns:1fr}}
+.modal-preview img{width:100%;border-radius:14px;display:block;box-shadow:0 12px 32px rgba(0,0,0,.4)}
+.qr-card{background:rgba(8,13,32,.72);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+#qrBox{background:#fff;padding:10px;border-radius:12px;min-width:168px;min-height:168px;display:flex;align-items:center;justify-content:center}
+#qrBox img,#qrBox canvas{display:block}
+.status-pill{font-size:12px;font-weight:700;padding:6px 11px;border-radius:10px;background:rgba(56,189,248,.14);color:#7dd3fc;line-height:1.4}
+.status-pill.ok{background:rgba(16,185,129,.16);color:#6ee7b7}
+.status-pill.err{background:rgba(244,63,94,.16);color:#fda4af}
+.modal-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;margin-top:16px}
+.spinner{width:28px;height:28px;border:3px solid rgba(148,169,235,.25);border-top-color:#38bdf8;border-radius:50%;animation:spin .75s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-banner">
+      <img src="ieee logo.png" alt="IEEE ASU Student Branch" onerror="this.onerror=null;this.src='ieee-logo.png';">
+    </div>
+    <div class="brand-text">
+      <h1 data-i18n="title">Design Your Student ID Card</h1>
+      <p data-i18n="subtitle">Create your pixel avatar, customize with IEEE stickers, and send it straight to your device</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="btnLang">عربي</button>
+    <button id="btnReset" class="ghost-danger" data-i18n="nextStudent">↻ Next Student</button>
+  </div>
+</header>
+
+<main class="workspace">
+  <section class="left-col">
+    <div class="stage-card">
+      <div class="stage">
+        <div id="wrap">
+          <div id="holder">
+            <div id="card">
+              <div id="band">
+                <img class="logo-bg" src="ieee logo.png" alt="IEEE ASU Student Branch" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="logo-fallback">IEEE ASU Student Branch</div>
+                <span class="class-pill" id="classPill">CLASS OF 2030</span>
+              </div>
+              <div class="card-body">
+                <div class="avatar-slot">
+                  <div class="avatar-frame">
+                    <canvas id="avatarCanvas" width="200" height="240"></canvas>
+                  </div>
+                  <span class="member-tag" id="memberTag">FUTURE ENGINEER</span>
+                </div>
+                <div class="info-col">
+                  <div>
+                    <div class="info-label" id="lblName">STUDENT NAME</div>
+                    <div id="iname" dir="auto">Your Name</div>
+                  </div>
+                  <div id="imajor" dir="auto">Data Science &amp; AI</div>
+                  <div class="id-row">
+                    <span class="id-chip">ASU ID</span>
+                    <span id="iid">202600000</span>
+                  </div>
+                </div>
+              </div>
+              <div id="foot"></div>
+            </div>
+            <div id="gizmo">
+              <div class="g-stem"></div>
+              <div class="g-rot" id="gRot" title="Drag to rotate">↻</div>
+              <div class="g-del" id="gDel" title="Delete">×</div>
+              <div class="g-scale" id="gScale" title="Drag to resize">⤢</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-controls empty" id="itemControls">
+        <span data-i18n="selectHint">Click any sticker or badge on the card to drag, smoothly rotate, or resize</span>
+      </div>
+    </div>
+
+   <div class="send-bar">
+       <button class="pri" id="btnDone" style="width:100%" data-i18n="finishBtn">✦ Finish &amp; Get Card</button>
+      </div>
+  </section>
+
+  <section class="editor-card">
+    <div class="main-tabs">
+      <button class="on" data-tab="details" data-i18n="tabDetails">1. Card Info</button>
+      <button data-tab="avatar" data-i18n="tabAvatar">2. Pixel Avatar</button>
+      <button data-tab="decor" data-i18n="tabDecor">3. Stickers</button>
+    </div>
+
+    <div class="pane on" id="pane-details">
+      <div class="field-grid">
+        <div class="field">
+          <label for="fn" data-i18n="fieldName">Full Name</label>
+          <input type="text" id="fn" maxlength="26" placeholder="e.g. Sara Ahmad">
+        </div>
+        <div class="field">
+          <label for="fm" data-i18n="fieldMajor">Major</label>
+          <input type="text" id="fm" maxlength="30" placeholder="e.g. Computer Science">
+        </div>
+        <div class="field">
+          <label for="fi" data-i18n="fieldId">University ID</label>
+          <input type="text" id="fi" maxlength="14" inputmode="numeric" placeholder="e.g. 202610420">
+        </div>
+      </div>
+      <div class="section-title" data-i18n="cardTheme">Card Style</div>
+      <div class="theme-row" id="themeRow"></div>
+    </div>
+
+    <div class="pane" id="pane-avatar">
+      <div class="sub-row">
+        <span style="font-size:12px;color:var(--mute)" data-i18n="avatarHint">Live preview updates directly on your card</span>
+        <button id="btnRand" data-i18n="randomize">🎲 Randomize</button>
+      </div>
+      <div class="avatar-scroll" id="avatarControls"></div>
+    </div>
+
+    <div class="pane" id="pane-decor">
+      <div class="section-title" data-i18n="stickersTitle">Tech &amp; Campus Stickers</div>
+      <div class="sticker-grid" id="stickerGrid"></div>
+      <div class="section-title" data-i18n="badgesTitle">IEEE &amp; ASU Badges</div>
+      <div class="badge-grid" id="badgeGrid"></div>
+    </div>
+  </section>
+</main>
+
+<div class="modal-ov" id="modal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2 data-i18n="modalTitle">Your IEEE ASU Card is Ready!</h2>
+      <button id="btnCloseModal">✕</button>
+    </div>
+    <div class="modal-grid">
+      <div class="modal-preview">
+        <img id="outImg" alt="IEEE ASU Student Card">
+      </div>
+      <div class="qr-card">
+        <div id="qrBox"><div class="spinner"></div></div>
+        <div class="status-pill" id="deliveryStatus">Preparing your card...</div>
+        <button id="btnRetry" style="display:none" data-i18n="retryBtn">Retry Send</button>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button id="btnEdit" data-i18n="backEdit">Back to Edit</button>
+      <button id="btnDownload" data-i18n="downloadPng">⬇ Download PNG</button>
+      <button class="pri" id="btnModalNext" data-i18n="nextStudent">↻ Next Student</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(function(){
+const SCRIPT_URL = '';
+
+const $ = id => document.getElementById(id);
+const card = $('card');
+const holder = $('holder');
+const wrap = $('wrap');
+const gizmo = $('gizmo');
+const itemControls = $('itemControls');
+const avatarCanvas = $('avatarCanvas');
+const ctx = avatarCanvas.getContext('2d');
+
+let lang = 'en';
+let scaleFactor = 1;
+let selected = null;
+let zCounter = 10;
+let lastDataUrl = '';
+
+const i18n = {
+  en: {
+    title: 'Design Your Student ID Card',
+    subtitle: 'Create your pixel avatar, customize with IEEE stickers, and send it straight to your device',
+    nextStudent: '↻ Next Student',
+    selectHint: 'Click any sticker or badge on the card to drag, smoothly rotate, or resize',
+    finishBtn: '✦ Finish & Get Card',
+    tabDetails: '1. Card Info',
+    tabAvatar: '2. Pixel Avatar',
+    tabDecor: '3. Stickers',
+    fieldName: 'Full Name',
+    fieldMajor: 'Major',
+    fieldId: 'University ID',
+    cardTheme: 'Card Style',
+    avatarHint: 'Live preview updates directly on your card',
+    randomize: '🎲 Randomize',
+    stickersTitle: 'Tech & Campus Stickers',
+    badgesTitle: 'IEEE & ASU Badges',
+    modalTitle: 'Your IEEE ASU Card is Ready!',
+    retryBtn: 'Retry Send',
+    backEdit: 'Back to Edit',
+    downloadPng: '⬇ Download PNG',
+    emailPh: 'student@email.com (optional for email delivery)',
+    namePh: 'e.g. Sara Ahmad',
+    majorPh: 'e.g. Data Science & AI',
+    idPh: 'e.g. 202610420',
+    defName: 'Your Name',
+    defMajor: 'Data Science & AI',
+    defId: '202600000',
+    classPill: 'CLASS OF 2030',
+    memberTag: 'FUTURE ENGINEER',
+    lblName: 'STUDENT NAME',
+    rotate: 'Rotate',
+    size: 'Size',
+    del: 'Delete',
+    front: 'Front',
+    sending: 'Uploading & generating QR code...',
+    sendingEmail: 'Sending email & generating QR code...',
+    qrReady: 'Scan QR to save to your phone!',
+    qrAndEmail: 'Email sent! Scan QR to save instantly.',
+    noScript: 'Paste your Apps Script URL in index.html to activate the QR code. PNG download is ready!',
+    sendErr: 'Could not generate QR code. You can retry or download the PNG directly.',
+    langBtn: 'عربي',
+    secGender: 'Base Style',
+    secSkin: 'Skin Tone',
+    secHair: 'Hair & Hijab',
+    secHairColor: 'Hair / Hijab Color',
+    secExpr: 'Expression',
+    secEyeColor: 'Eye Color',
+    secAcc: 'Glasses & Accessories',
+    secOutfit: 'Outfit',
+    secOutfitColor: 'Outfit Color',
+    secBg: 'Avatar Background'
+  },
+  ar: {
+    title: 'صمّم بطاقتك الجامعية',
+    subtitle: 'صمّم شخصيتك البكسل، أضف ستيكرات IEEE، واستلم بطاقتك فوراً على جهازك',
+    nextStudent: '↻ طالب جديد',
+    selectHint: 'اضغط على أي ستيكر أو شارة لتحريكها أو تدويرها وتكبيرها بسلاسة',
+    finishBtn: '✦ إنهاء وحفظ البطاقة',
+    tabDetails: '1. بيانات البطاقة',
+    tabAvatar: '2. شخصية بكسل',
+    tabDecor: '3. ستيكرات',
+    fieldName: 'الاسم الكامل',
+    fieldMajor: 'التخصص',
+    fieldId: 'الرقم الجامعي',
+    cardTheme: 'لون وتصميم البطاقة',
+    avatarHint: 'الشخصية تتحدث مباشرة على البطاقة',
+    randomize: '🎲 عشوائي',
+    stickersTitle: 'ستيكرات تقنية وجامعية',
+    badgesTitle: 'شارات IEEE و ASU',
+    modalTitle: 'بطاقتك من IEEE ASU جاهزة!',
+    retryBtn: 'إعادة المحاولة',
+    backEdit: 'رجوع للتعديل',
+    downloadPng: '⬇ حفظ الصورة PNG',
+    emailPh: 'example@email.com (اختياري للإرسال بالإيميل)',
+    namePh: 'مثال: سارة أحمد',
+    majorPh: 'مثال: علم البيانات والذكاء الاصطناعي',
+    idPh: 'مثال: 202610420',
+    defName: 'اسمك هون',
+    defMajor: 'علم البيانات والذكاء الاصطناعي',
+    defId: '202600000',
+    classPill: 'دفعة 2030',
+    memberTag: 'مهندس المستقبل',
+    lblName: 'اسم الطالب',
+    rotate: 'تدوير',
+    size: 'الحجم',
+    del: 'حذف',
+    front: 'للأمام',
+    sending: 'جاري تجهيز رمز QR...',
+    sendingEmail: 'جاري إرسال الإيميل وتجهيز رمز QR...',
+    qrReady: 'امسح الكود لحفظ البطاقة على هاتفك!',
+    qrAndEmail: 'تم إرسال الإيميل! ويمكنك مسح الكود فوراً.',
+    noScript: 'أضف رابط Google Apps Script لتفعيل رمز QR. التحميل المباشر جاهز!',
+    sendErr: 'تعذر تجهيز رمز QR. يمكنك إعادة المحاولة أو حفظ الصورة مباشرة.',
+    langBtn: 'English',
+    secGender: 'النمط',
+    secSkin: 'لون البشرة',
+    secHair: 'الشعر والحجاب',
+    secHairColor: 'لون الشعر / الحجاب',
+    secExpr: 'التعبير',
+    secEyeColor: 'لون العيون',
+    secAcc: 'النظارات والإكسسوارات',
+    secOutfit: 'اللباس',
+    secOutfitColor: 'لون اللباس',
+    secBg: 'خلفية الشخصية'
+  }
+};
+
+const cardThemes = [
+  { id: 'white', bg: '#ffffff', ink: '#0e1b38', dark: false, swatch: '#ffffff' },
+  { id: 'ice', bg: 'linear-gradient(155deg,#f4f9ff 0%,#e5f0ff 100%)', ink: '#0b2244', dark: false, swatch: '#dbeafe' },
+  { id: 'lavender', bg: 'linear-gradient(155deg,#f6f4ff 0%,#eae4ff 100%)', ink: '#1e1647', dark: false, swatch: '#ddd6fe' },
+  { id: 'mint', bg: 'linear-gradient(155deg,#f0fdf9 0%,#dcfce7 100%)', ink: '#0f2d27', dark: false, swatch: '#bbf7d0' },
+  { id: 'ieeeDark', bg: 'linear-gradient(155deg,#0c1f3d 0%,#082f54 100%)', ink: '#f8fafc', dark: true, swatch: '#00629b' },
+  { id: 'starry', bg: 'linear-gradient(155deg,#131636 0%,#241f57 60%,#16325c 100%)', ink: '#f8fafc', dark: true, swatch: '#4c3db8' }
+];
+let currentTheme = 'white';
+
+const stickers = ['⚡','🤖','💻','🧠','🛰️','📡','🔌','🚀','🎓','💡','⚙️','🖥️','🔬','🎮','🏆','⭐','✨','🔋','🌐','☕'];
+const badges = [
+  ['IEEE ASU','#00629b'],
+  ['Class of 2030','#5b4ce0'],
+  ['Robotics','#e11d48'],
+  ['CS & AI','#7c3aed'],
+  ['ComSoc','#0284c7'],
+  ['PES','#0d9488'],
+  ['WIE','#db2777'],
+  ['Future Engineer','#ea580c'],
+  ['Freshman','#2563eb'],
+  ['Tech Builder','#1e293b']
+];
+
+const avatar = {
+  gender: 'female',
+  skin: 1,
+  hair: 'hijab_classic',
+  hairColor: 0,
+  expr: 'happy',
+  eyeColor: 0,
+  acc: 'none',
+  outfit: 'hoodie',
+  outfitColor: 0,
+  bg: 'starry'
+};
+
+const SKINS = [
+  { main: '#fde2cc', shade: '#e8c1a3', blush: '#f7b2a6' },
+  { main: '#f3cfa9', shade: '#d9ae84', blush: '#ea9f8f' },
+  { main: '#dfb083', shade: '#c28f61', blush: '#d68a76' },
+  { main: '#c58c5f', shade: '#a66e44', blush: '#be755d' },
+  { main: '#96613e', shade: '#76482b', blush: '#91503c' },
+  { main: '#694028', shade: '#4e2d1a', blush: '#6b3626' }
+];
+
+const HAIR_COLORS = [
+  { main: '#1e202b', shade: '#10121a', hi: '#3a3f54' },
+  { main: '#472c1e', shade: '#2f1c12', hi: '#694532' },
+  { main: '#7a4928', shade: '#593319', hi: '#9c633b' },
+  { main: '#cfa052', shade: '#ab7e36', hi: '#e6bd73' },
+  { main: '#8f322c', shade: '#6b211c', hi: '#b54a43' },
+  { main: '#1d3557', shade: '#122238', hi: '#315485' },
+  { main: '#5b3e82', shade: '#40295e', hi: '#7c5aa8' },
+  { main: '#a86475', shade: '#824756', hi: '#c98596' },
+  { main: '#4c7365', shade: '#355449', hi: '#699484' },
+  { main: '#d9cfc1', shade: '#b5a998', hi: '#ede6dc' },
+  { main: '#00629b', shade: '#00456e', hi: '#1b85c4' }
+];
+
+const EYE_COLORS = ['#221b18','#5c4028','#1f6aa5','#2e7d57','#5a6b7c'];
+
+const OUTFIT_COLORS = [
+  { main: '#00629b', shade: '#004670', hi: '#2b8ac2' },
+  { main: '#1e2948', shade: '#12192e', hi: '#364673' },
+  { main: '#4f3ec2', shade: '#392b96', hi: '#7161e0' },
+  { main: '#334155', shade: '#1e293b', hi: '#526580' },
+  { main: '#1f5c4d', shade: '#133d33', hi: '#337d6b' },
+  { main: '#7f243b', shade: '#591627', hi: '#a33b55' },
+  { main: '#d8dee9', shade: '#b5c0d4', hi: '#eef2f8' }
+];
+
+const HAIR_STYLES = [
+  { id: 'short', en: 'Short', ar: 'قصير' },
+  { id: 'fluffy', en: 'Curly', ar: 'كيرلي' },
+  { id: 'messy', en: 'Messy', ar: 'عشوائي' },
+  { id: 'sidepart', en: 'Side Part', ar: 'جانبي' },
+  { id: 'spiky', en: 'Spiky', ar: 'سبايكي' },
+  { id: 'long', en: 'Long', ar: 'طويل' },
+  { id: 'wavy', en: 'Wavy', ar: 'مموج' },
+  { id: 'bob', en: 'Bob', ar: 'بوب' },
+  { id: 'ponytail', en: 'Ponytail', ar: 'ذيل حصان' },
+  { id: 'hijab_classic', en: 'Hijab Classic', ar: 'حجاب كلاسيك' },
+  { id: 'hijab_draped', en: 'Hijab Draped', ar: 'حجاب منسدل' },
+  { id: 'hijab_modern', en: 'Hijab Tucked', ar: 'حجاب عصري' }
+];
+
+const EXPR_STYLES = [
+  { id: 'happy', en: 'Smile', ar: 'ابتسامة' },
+  { id: 'grin', en: 'Big Grin', ar: 'ضحكة' },
+  { id: 'chill', en: 'Chill', ar: 'هادئ' },
+  { id: 'wink', en: 'Wink', ar: 'غمزة' },
+  { id: 'starry', en: 'Excited', ar: 'متحمس' },
+  { id: 'focused', en: 'Focused', ar: 'مركز' }
+];
+
+const ACC_STYLES = [
+  { id: 'none', en: 'None', ar: 'بدون' },
+  { id: 'glasses_sq', en: 'Square Glasses', ar: 'نظارة مربعة' },
+  { id: 'glasses_rd', en: 'Round Glasses', ar: 'نظارة دائرية' },
+  { id: 'shades', en: 'Shades', ar: 'شمسية' },
+  { id: 'headphones', en: 'Headphones', ar: 'سماعات' },
+  { id: 'gradcap', en: 'Grad Cap', ar: 'قبعة تخرج' },
+  { id: 'cap', en: 'Cap', ar: 'كاب' }
+];
+
+const OUTFIT_STYLES = [
+  { id: 'hoodie', en: 'IEEE Zip Hoodie', ar: 'هودي IEEE' },
+  { id: 'crewneck', en: 'IEEE Crewneck', ar: 'سويتر IEEE' },
+  { id: 'blazer', en: 'Smart Blazer', ar: 'بليزر' },
+  { id: 'varsity', en: 'Campus Jacket', ar: 'جاكيت جامعي' },
+  { id: 'striped', en: 'Knit Sweater', ar: 'كنزة مخططة' },
+  { id: 'polo', en: 'Clean Polo', ar: 'بولو' }
+];
+
+const BG_STYLES = [
+  { id: 'starry', en: 'Starry IEEE', ar: 'نجوم IEEE' },
+  { id: 'sky', en: 'Soft Sky', ar: 'سماوي' },
+  { id: 'lavender', en: 'Lavender', ar: 'لافندر' },
+  { id: 'mint', en: 'Mint Grid', ar: 'نعناعي' },
+  { id: 'peach', en: 'Warm Peach', ar: 'خوخي' },
+  { id: 'slate', en: 'Dark Tech', ar: 'تقني داكن' }
+];
+
+function px(x, y, c, w = 1, h = 1){
+  ctx.fillStyle = c;
+  ctx.fillRect(x * 10, y * 10, w * 10, h * 10);
+}
+
+function drawAvatar(){
+  ctx.clearRect(0, 0, 200, 240);
+  const skin = SKINS[avatar.skin];
+  const hc = HAIR_COLORS[avatar.hairColor];
+  const oc = OUTFIT_COLORS[avatar.outfitColor];
+  const eyeC = EYE_COLORS[avatar.eyeColor];
+  const isHijab = avatar.hair.startsWith('hijab_');
+  const isFem = avatar.gender === 'female';
+
+  if(avatar.bg === 'starry'){
+    for(let y = 0; y < 24; y++){
+      const t = y / 23;
+      const r = Math.round(78 - t * 24);
+      const g = Math.round(62 + t * 44);
+      const b = Math.round(196 + t * 24);
+      px(0, y, `rgb(${r},${g},${b})`, 20, 1);
+    }
+    [[2,2],[16,3],[4,7],[17,8],[1,12],[18,14],[3,17],[15,5],[11,1],[8,2]].forEach(([x,y],idx)=>{
+      px(x, y, idx % 2 ? 'rgba(255,255,255,.85)' : 'rgba(125,211,252,.85)');
+    });
+  } else if(avatar.bg === 'sky'){
+    px(0, 0, '#dbeafe', 20, 24);
+    px(0, 16, '#bfdbfe', 20, 8);
+  } else if(avatar.bg === 'lavender'){
+    px(0, 0, '#ede9fe', 20, 24);
+    px(0, 16, '#ddd6fe', 20, 8);
+  } else if(avatar.bg === 'mint'){
+    px(0, 0, '#dcfce7', 20, 24);
+    for(let i = 0; i < 20; i += 4) px(i, 0, 'rgba(16,185,129,.12)', 1, 24);
+    for(let j = 0; j < 24; j += 4) px(0, j, 'rgba(16,185,129,.12)', 20, 1);
+  } else if(avatar.bg === 'peach'){
+    px(0, 0, '#ffedd5', 20, 24);
+    px(0, 16, '#fed7aa', 20, 8);
+  } else {
+    px(0, 0, '#131d38', 20, 24);
+    for(let i = 0; i < 20; i += 4) px(i, 0, 'rgba(56,189,248,.1)', 1, 24);
+    for(let j = 0; j < 24; j += 4) px(0, j, 'rgba(56,189,248,.1)', 20, 1);
+  }
+
+  if(avatar.hair === 'long'){
+    px(4, 5, hc.shade, 12, 16);
+    px(5, 6, hc.main, 10, 14);
+  } else if(avatar.hair === 'wavy'){
+    px(3, 7, hc.shade, 14, 13);
+    px(4, 5, hc.main, 12, 15);
+    px(3, 19, hc.main, 3, 2);
+    px(14, 19, hc.main, 3, 2);
+  } else if(avatar.hair === 'bob'){
+    px(4, 6, hc.shade, 12, 10);
+    px(5, 6, hc.main, 10, 9);
+  } else if(avatar.hair === 'ponytail'){
+    px(14, 6, hc.shade, 3, 8);
+    px(15, 7, hc.main, 2, 7);
+    px(16, 13, hc.shade, 2, 2);
+  } else if(isHijab){
+    px(4, 4, hc.shade, 12, 14);
+    px(5, 3, hc.main, 10, 14);
+  }
+
+  const sL = isFem ? 4 : 3;
+  const sW = isFem ? 12 : 14;
+  px(8, 14, skin.main, 4, 3);
+  px(8, 15, skin.shade, 4, 1);
+
+  px(sL + 1, 17, oc.main, sW - 2, 1);
+  px(sL, 18, oc.main, sW, 6);
+  px(sL, 19, oc.shade, 1, 5);
+  px(sL + sW - 1, 19, oc.shade, 1, 5);
+
+  if(avatar.outfit === 'hoodie'){
+    px(6, 17, oc.shade, 8, 1);
+    px(9, 17, '#e2e8f0', 2, 7);
+    px(8, 18, '#f8fafc', 1, 3);
+    px(11, 18, '#f8fafc', 1, 3);
+    px(12, 19, '#38bdf8', 2, 1);
+    px(13, 20, '#ffffff', 1, 1);
+  } else if(avatar.outfit === 'crewneck'){
+    px(7, 17, '#f8fafc', 6, 1);
+    px(8, 17, skin.main, 4, 1);
+    px(sL + 1, 20, oc.hi, sW - 2, 1);
+    px(12, 19, '#7dd3fc', 2, 1);
+  } else if(avatar.outfit === 'blazer'){
+    px(8, 17, '#f8fafc', 4, 7);
+    px(7, 17, oc.shade, 1, 3);
+    px(12, 17, oc.shade, 1, 3);
+    px(7, 20, oc.hi, 1, 4);
+    px(12, 20, oc.hi, 1, 4);
+    px(13, 19, '#38bdf8', 1, 1);
+  } else if(avatar.outfit === 'varsity'){
+    px(sL, 18, '#f1f5f9', 2, 6);
+    px(sL + sW - 2, 18, '#f1f5f9', 2, 6);
+    px(7, 17, '#f1f5f9', 6, 1);
+    px(8, 17, skin.main, 4, 1);
+    px(9, 18, oc.shade, 2, 6);
+    px(12, 19, '#f1f5f9', 1, 2);
+  } else if(avatar.outfit === 'striped'){
+    px(7, 17, oc.shade, 6, 1);
+    px(sL, 19, '#f1f5f9', sW, 1);
+    px(sL, 21, '#f1f5f9', sW, 1);
+  } else if(avatar.outfit === 'polo'){
+    px(7, 17, oc.hi, 2, 1);
+    px(11, 17, oc.hi, 2, 1);
+    px(9, 18, oc.shade, 2, 3);
+    px(9, 19, '#f8fafc', 1, 1);
+    px(12, 19, '#38bdf8', 1, 1);
+  }
+
+  if(!isHijab){
+    px(5, 10, skin.shade, 1, 2);
+    px(14, 10, skin.shade, 1, 2);
+  }
+
+  px(6, 6, skin.main, 8, 8);
+  px(7, 14, skin.main, 6, 1);
+  px(13, 12, skin.shade, 1, 2);
+  px(12, 14, skin.shade, 1, 1);
+
+  if(isFem || avatar.expr === 'happy' || avatar.expr === 'starry'){
+    px(6, 11, skin.blush, 1, 1);
+    px(13, 11, skin.blush, 1, 1);
+  }
+
+  const browC = avatar.hairColor >= 9 ? '#523b2c' : hc.shade;
+  if(avatar.expr === 'focused'){
+    px(7, 8, browC, 2, 1);
+    px(11, 8, browC, 2, 1);
+    px(8, 9, browC, 1, 1);
+    px(11, 9, browC, 1, 1);
+  } else {
+    px(7, 8, browC, 2, 1);
+    px(11, 8, browC, 2, 1);
+  }
+
+  const drawEye = (x, winking) => {
+    if(winking){
+      px(x, 10, '#18181b', 2, 1);
+      return;
+    }
+    px(x, 9, '#ffffff', 2, 2);
+    px(x === 7 ? 8 : 11, 9, '#141418', 1, 2);
+    px(x === 7 ? 7 : 12, 10, eyeC, 1, 1);
+    if(avatar.expr === 'starry'){
+      px(x === 7 ? 8 : 11, 9, '#ffffff', 1, 1);
+      px(x === 7 ? 7 : 12, 9, '#38bdf8', 1, 1);
+    }
+  };
+  drawEye(7, false);
+  drawEye(11, avatar.expr === 'wink');
+  if(isFem){
+    px(6, 9, '#1f1b24', 1, 1);
+    px(13, 9, '#1f1b24', 1, 1);
+  }
+
+  if(avatar.expr === 'happy' || avatar.expr === 'wink'){
+    px(8, 12, '#7c3f38', 1, 1);
+    px(9, 13, '#7c3f38', 2, 1);
+    px(11, 12, '#7c3f38', 1, 1);
+  } else if(avatar.expr === 'grin'){
+    px(8, 12, '#ffffff', 4, 1);
+    px(8, 13, '#7c3f38', 4, 1);
+  } else if(avatar.expr === 'starry'){
+    px(9, 12, '#7c3f38', 2, 2);
+    px(9, 12, '#ffffff', 2, 1);
+  } else if(avatar.expr === 'chill'){
+    px(9, 12, '#7c3f38', 3, 1);
+  } else {
+    px(9, 12, '#7c3f38', 2, 1);
+  }
+
+  if(avatar.hair === 'short'){
+    px(5, 4, hc.main, 10, 3);
+    px(6, 3, hc.main, 8, 1);
+    px(7, 4, hc.hi, 5, 1);
+    px(5, 7, hc.shade, 1, 3);
+    px(14, 7, hc.shade, 1, 3);
+  } else if(avatar.hair === 'fluffy'){
+    px(5, 3, hc.main, 10, 4);
+    px(6, 2, hc.hi, 3, 1);
+    px(11, 2, hc.hi, 3, 1);
+    px(4, 5, hc.shade, 1, 4);
+    px(15, 5, hc.shade, 1, 4);
+    px(6, 7, hc.main, 2, 1);
+    px(9, 7, hc.main, 2, 1);
+    px(12, 7, hc.main, 2, 1);
+  } else if(avatar.hair === 'messy'){
+    px(5, 4, hc.main, 10, 3);
+    px(6, 3, hc.hi, 7, 1);
+    px(6, 7, hc.main, 1, 1);
+    px(8, 7, hc.main, 2, 1);
+    px(12, 7, hc.main, 2, 1);
+    px(5, 7, hc.shade, 1, 2);
+    px(14, 7, hc.shade, 1, 2);
+  } else if(avatar.hair === 'sidepart'){
+    px(5, 4, hc.main, 10, 3);
+    px(6, 3, hc.hi, 8, 1);
+    px(6, 7, hc.main, 5, 1);
+    px(5, 7, hc.shade, 1, 3);
+    px(14, 7, hc.shade, 1, 2);
+  } else if(avatar.hair === 'spiky'){
+    px(5, 4, hc.main, 10, 3);
+    px(6, 2, hc.main, 1, 2);
+    px(9, 2, hc.hi, 2, 2);
+    px(13, 2, hc.main, 1, 2);
+    px(5, 7, hc.shade, 1, 2);
+    px(14, 7, hc.shade, 1, 2);
+  } else if(avatar.hair === 'long' || avatar.hair === 'wavy'){
+    px(5, 4, hc.main, 10, 3);
+    px(6, 3, hc.hi, 8, 1);
+    px(5, 7, hc.main, 1, 9);
+    px(14, 7, hc.main, 1, 9);
+    px(6, 7, hc.shade, 2, 1);
+    px(12, 7, hc.shade, 2, 1);
+  } else if(avatar.hair === 'bob'){
+    px(5, 4, hc.main, 10, 3);
+    px(6, 3, hc.hi, 8, 1);
+    px(5, 7, hc.main, 1, 8);
+    px(14, 7, hc.main, 1, 8);
+    px(6, 7, hc.main, 3, 1);
+    px(11, 7, hc.main, 3, 1);
+  } else if(avatar.hair === 'ponytail'){
+    px(5, 4, hc.main, 10, 3);
+    px(6, 3, hc.hi, 8, 1);
+    px(5, 7, hc.shade, 1, 3);
+    px(14, 7, hc.shade, 1, 3);
+  } else if(isHijab){
+    px(6, 6, hc.shade, 8, 1);
+    px(5, 4, hc.main, 10, 2);
+    px(6, 3, hc.hi, 8, 1);
+    px(5, 6, hc.main, 1, 9);
+    px(14, 6, hc.main, 1, 9);
+    px(6, 15, hc.main, 8, 1);
+    px(7, 15, hc.shade, 6, 1);
+    if(avatar.hair === 'hijab_classic'){
+      px(5, 16, hc.main, 10, 3);
+      px(6, 19, hc.main, 8, 1);
+      px(7, 17, hc.hi, 6, 1);
+      px(6, 18, hc.shade, 8, 1);
+    } else if(avatar.hair === 'hijab_draped'){
+      px(5, 16, hc.main, 10, 2);
+      px(5, 18, hc.main, 5, 4);
+      px(6, 18, hc.hi, 2, 3);
+      px(10, 17, hc.shade, 4, 2);
+    } else {
+      px(6, 16, hc.main, 8, 1);
+      px(7, 16, hc.hi, 6, 1);
+    }
+  }
+
+  if(avatar.acc === 'glasses_sq'){
+    px(6, 8, '#1e293b', 3, 1);
+    px(11, 8, '#1e293b', 3, 1);
+    px(6, 11, '#1e293b', 3, 1);
+    px(11, 11, '#1e293b', 3, 1);
+    px(6, 9, '#1e293b', 1, 2);
+    px(13, 9, '#1e293b', 1, 2);
+    px(9, 9, '#1e293b', 2, 1);
+    px(7, 9, 'rgba(186,230,253,.35)', 2, 2);
+    px(11, 9, 'rgba(186,230,253,.35)', 2, 2);
+  } else if(avatar.acc === 'glasses_rd'){
+    px(7, 8, '#926c3b', 2, 1);
+    px(11, 8, '#926c3b', 2, 1);
+    px(7, 11, '#926c3b', 2, 1);
+    px(11, 11, '#926c3b', 2, 1);
+    px(6, 9, '#926c3b', 1, 2);
+    px(13, 9, '#926c3b', 1, 2);
+    px(9, 9, '#926c3b', 2, 1);
+    px(7, 9, 'rgba(255,255,255,.22)', 2, 2);
+    px(11, 9, 'rgba(255,255,255,.22)', 2, 2);
+  } else if(avatar.acc === 'shades'){
+    px(6, 9, '#0f172a', 4, 2);
+    px(10, 9, '#0f172a', 4, 2);
+    px(7, 9, '#38bdf8', 1, 1);
+    px(11, 9, '#38bdf8', 1, 1);
+  } else if(avatar.acc === 'headphones'){
+    px(5, 3, '#1e293b', 10, 1);
+    px(4, 4, '#1e293b', 1, 5);
+    px(15, 4, '#1e293b', 1, 5);
+    px(3, 8, '#0f172a', 2, 5);
+    px(15, 8, '#0f172a', 2, 5);
+    px(3, 10, '#38bdf8', 1, 2);
+    px(16, 10, '#38bdf8', 1, 2);
+  } else if(avatar.acc === 'gradcap'){
+    px(4, 3, '#111827', 12, 1);
+    px(6, 2, '#1e293b', 8, 1);
+    px(7, 4, '#111827', 6, 1);
+    px(15, 4, '#facc15', 1, 3);
+    px(15, 7, '#eab308', 2, 1);
+  } else if(avatar.acc === 'cap'){
+    px(5, 3, '#00629b', 10, 2);
+    px(4, 5, '#004670', 13, 1);
+    px(9, 4, '#ffffff', 2, 1);
+  }
+}
+
+function fit(){
+  scaleFactor = Math.min(1, wrap.clientWidth / 600);
+  holder.style.transform = `scale(${scaleFactor})`;
+  wrap.style.height = (378 * scaleFactor) + 'px';
+  syncGizmo();
+}
+window.addEventListener('resize', fit);
+
+function applyTheme(id){
+  currentTheme = id;
+  const th = cardThemes.find(t => t.id === id) || cardThemes[0];
+  card.style.background = th.bg;
+  card.style.color = th.ink;
+  card.classList.toggle('theme-dark', th.dark);
+  document.querySelectorAll('#themeRow .sw').forEach(b => b.classList.toggle('on', b.dataset.id === id));
+}
+
+function renderThemes(){
+  const row = $('themeRow');
+  row.innerHTML = '';
+  cardThemes.forEach(th => {
+    const b = document.createElement('button');
+    b.className = 'sw' + (th.id === currentTheme ? ' on' : '');
+    b.dataset.id = th.id;
+    b.style.background = th.swatch;
+    b.onclick = () => applyTheme(th.id);
+    row.appendChild(b);
+  });
+}
+
+function renderDecor(){
+  const sg = $('stickerGrid');
+  sg.innerHTML = '';
+  stickers.forEach(s => {
+    const b = document.createElement('button');
+    b.textContent = s;
+    b.onclick = () => addItem('s', s);
+    sg.appendChild(b);
+  });
+  const bg = $('badgeGrid');
+  bg.innerHTML = '';
+  badges.forEach(([txt, col]) => {
+    const b = document.createElement('button');
+    b.textContent = txt;
+    b.style.background = col;
+    b.onclick = () => addItem('b', txt, col);
+    bg.appendChild(b);
+  });
+}
+
+function buildSection(container, titleKey, contentEl){
+  const t = document.createElement('div');
+  t.className = 'section-title';
+  t.textContent = i18n[lang][titleKey];
+  container.appendChild(t);
+  container.appendChild(contentEl);
+}
+
+function renderAvatarControls(){
+  const root = $('avatarControls');
+  root.innerHTML = '';
+
+  const mkChips = (items, active, onPick) => {
+    const g = document.createElement('div');
+    g.className = 'chip-grid';
+    items.forEach(it => {
+      const b = document.createElement('button');
+      b.className = 'chip' + (it.id === active ? ' on' : '');
+      b.textContent = lang === 'ar' ? it.ar : it.en;
+      b.onclick = () => { onPick(it.id); renderAvatarControls(); drawAvatar(); };
+      g.appendChild(b);
+    });
+    return g;
+  };
+
+  const mkDots = (colors, activeIdx, onPick) => {
+    const g = document.createElement('div');
+    g.className = 'dot-row';
+    colors.forEach((c, idx) => {
+      const b = document.createElement('button');
+      b.className = 'dot' + (idx === activeIdx ? ' on' : '');
+      b.style.background = typeof c === 'string' ? c : c.main;
+      b.onclick = () => { onPick(idx); renderAvatarControls(); drawAvatar(); };
+      g.appendChild(b);
+    });
+    return g;
+  };
+
+  buildSection(root, 'secGender', mkChips([
+    { id: 'female', en: 'Female', ar: 'أنثى' },
+    { id: 'male', en: 'Male', ar: 'ذكر' }
+  ], avatar.gender, v => {
+    avatar.gender = v;
+    if(v === 'male' && avatar.hair.startsWith('hijab_')) avatar.hair = 'short';
+  }));
+
+  buildSection(root, 'secSkin', mkDots(SKINS, avatar.skin, v => avatar.skin = v));
+  buildSection(root, 'secHair', mkChips(HAIR_STYLES, avatar.hair, v => avatar.hair = v));
+  buildSection(root, 'secHairColor', mkDots(HAIR_COLORS, avatar.hairColor, v => avatar.hairColor = v));
+  buildSection(root, 'secExpr', mkChips(EXPR_STYLES, avatar.expr, v => avatar.expr = v));
+  buildSection(root, 'secEyeColor', mkDots(EYE_COLORS, avatar.eyeColor, v => avatar.eyeColor = v));
+  buildSection(root, 'secAcc', mkChips(ACC_STYLES, avatar.acc, v => avatar.acc = v));
+  buildSection(root, 'secOutfit', mkChips(OUTFIT_STYLES, avatar.outfit, v => avatar.outfit = v));
+  buildSection(root, 'secOutfitColor', mkDots(OUTFIT_COLORS, avatar.outfitColor, v => avatar.outfitColor = v));
+  buildSection(root, 'secBg', mkChips(BG_STYLES, avatar.bg, v => avatar.bg = v));
+}
+
+function randomizeAvatar(){
+  const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+  avatar.gender = Math.random() < 0.5 ? 'female' : 'male';
+  avatar.skin = Math.floor(Math.random() * SKINS.length);
+  const pool = avatar.gender === 'female'
+    ? HAIR_STYLES
+    : HAIR_STYLES.filter(h => !h.id.startsWith('hijab_') && h.id !== 'long' && h.id !== 'wavy' && h.id !== 'ponytail');
+  avatar.hair = pick(pool).id;
+  avatar.hairColor = Math.floor(Math.random() * (avatar.hair.startsWith('hijab_') ? HAIR_COLORS.length : 5));
+  avatar.expr = pick(EXPR_STYLES).id;
+  avatar.eyeColor = Math.floor(Math.random() * EYE_COLORS.length);
+  avatar.acc = Math.random() < 0.45 ? 'none' : pick(ACC_STYLES).id;
+  avatar.outfit = pick(OUTFIT_STYLES).id;
+  avatar.outfitColor = Math.floor(Math.random() * OUTFIT_COLORS.length);
+  avatar.bg = pick(BG_STYLES).id;
+  renderAvatarControls();
+  drawAvatar();
+}
+
+function applyItemTransform(el){
+  el.style.left = el.dataset.x + 'px';
+  el.style.top = el.dataset.y + 'px';
+  el.style.transform = `translate(-50%, -50%) rotate(${el.dataset.rot}deg) scale(${el.dataset.sc})`;
+  if(el === selected) syncGizmo();
+}
+
+function syncGizmo(){
+  if(!selected){
+    gizmo.classList.remove('on');
+    return;
+  }
+  const sc = parseFloat(selected.dataset.sc);
+  const rot = parseFloat(selected.dataset.rot);
+  const w = selected.offsetWidth * sc + 16;
+  const h = selected.offsetHeight * sc + 16;
+  gizmo.style.width = w + 'px';
+  gizmo.style.height = h + 'px';
+  gizmo.style.left = selected.dataset.x + 'px';
+  gizmo.style.top = selected.dataset.y + 'px';
+  gizmo.style.transform = `translate(-50%, -50%) rotate(${rot}deg)`;
+  gizmo.classList.add('on');
+}
+
+function renderItemControls(){
+  const t = i18n[lang];
+  if(!selected){
+    itemControls.className = 'item-controls empty';
+    itemControls.innerHTML = `<span>${t.selectHint}</span>`;
+    return;
+  }
+  const rot = Math.round(parseFloat(selected.dataset.rot));
+  const sc = Math.round(parseFloat(selected.dataset.sc) * 100);
+  itemControls.className = 'item-controls';
+  itemControls.innerHTML = `
+    <div class="ctrl-group">
+      <label>${t.rotate}</label>
+      <input type="range" id="rngRot" min="-180" max="180" value="${rot}">
+      <span class="ctrl-val" id="valRot">${rot}°</span>
+    </div>
+    <div class="ctrl-group">
+      <label>${t.size}</label>
+      <input type="range" id="rngSc" min="40" max="260" value="${sc}">
+      <span class="ctrl-val" id="valSc">${sc}%</span>
+    </div>
+    <div class="mini-btns">
+      <button id="bRotL">↺ -15°</button>
+      <button id="bRot0">0°</button>
+      <button id="bRotR">↻ +15°</button>
+      <button id="bFront">${t.front}</button>
+      <button id="bDelItem" class="ghost-danger">${t.del}</button>
+    </div>
+  `;
+  $('rngRot').oninput = e => {
+    selected.dataset.rot = e.target.value;
+    $('valRot').textContent = e.target.value + '°';
+    applyItemTransform(selected);
+  };
+  $('rngSc').oninput = e => {
+    selected.dataset.sc = (e.target.value / 100).toFixed(2);
+    $('valSc').textContent = e.target.value + '%';
+    applyItemTransform(selected);
+  };
+  $('bRotL').onclick = () => nudgeRot(-15);
+  $('bRot0').onclick = () => setRot(0);
+  $('bRotR').onclick = () => nudgeRot(15);
+  $('bFront').onclick = () => { selected.style.zIndex = ++zCounter; };
+  $('bDelItem').onclick = deleteSelected;
+}
+
+function normalizeAngle(deg){
+  let a = ((deg + 180) % 360 + 360) % 360 - 180;
+  return Math.round(a);
+}
+
+function setRot(deg){
+  if(!selected) return;
+  const a = normalizeAngle(deg);
+  selected.dataset.rot = a;
+  applyItemTransform(selected);
+  if($('rngRot')){
+    $('rngRot').value = a;
+    $('valRot').textContent = a + '°';
+  }
+}
+
+function nudgeRot(delta){
+  if(!selected) return;
+  setRot(parseFloat(selected.dataset.rot) + delta);
+}
+
+function deleteSelected(){
+  if(!selected) return;
+  selected.remove();
+  selected = null;
+  syncGizmo();
+  renderItemControls();
+}
+
+function selectItem(el){
+  selected = el;
+  if(el) el.style.zIndex = ++zCounter;
+  syncGizmo();
+  renderItemControls();
+}
+
+function addItem(kind, val, col){
+  const el = document.createElement('div');
+  el.className = 'it';
+  if(kind === 's'){
+    el.textContent = val;
+    el.style.fontSize = '50px';
+  } else {
+    el.textContent = val;
+    el.classList.add('badge');
+    el.style.background = col;
+  }
+  el.dataset.x = Math.round(320 + (Math.random() - 0.5) * 140);
+  el.dataset.y = Math.round(255 + (Math.random() - 0.5) * 80);
+  el.dataset.sc = '1';
+  el.dataset.rot = '0';
+  el.style.zIndex = ++zCounter;
+  card.appendChild(el);
+  applyItemTransform(el);
+  selectItem(el);
+}
+
+let action = null;
+
+card.addEventListener('pointerdown', ev => {
+  const item = ev.target.closest('.it');
+  if(!item){
+    selectItem(null);
+    return;
+  }
+  ev.preventDefault();
+  selectItem(item);
+  action = {
+    type: 'drag',
+    el: item,
+    startX: ev.clientX,
+    startY: ev.clientY,
+    origX: parseFloat(item.dataset.x),
+    origY: parseFloat(item.dataset.y)
+  };
+  item.setPointerCapture(ev.pointerId);
+});
+
+$('gRot').addEventListener('pointerdown', ev => {
+  if(!selected) return;
+  ev.preventDefault();
+  ev.stopPropagation();
+  const rect = card.getBoundingClientRect();
+  const cx = rect.left + parseFloat(selected.dataset.x) * scaleFactor;
+  const cy = rect.top + parseFloat(selected.dataset.y) * scaleFactor;
+  action = { type: 'rot', el: selected, cx, cy };
+  ev.target.setPointerCapture(ev.pointerId);
+});
+
+$('gScale').addEventListener('pointerdown', ev => {
+  if(!selected) return;
+  ev.preventDefault();
+  ev.stopPropagation();
+  const rect = card.getBoundingClientRect();
+  const cx = rect.left + parseFloat(selected.dataset.x) * scaleFactor;
+  const cy = rect.top + parseFloat(selected.dataset.y) * scaleFactor;
+  const startDist = Math.max(12, Math.hypot(ev.clientX - cx, ev.clientY - cy));
+  action = { type: 'scale', el: selected, cx, cy, startDist, startSc: parseFloat(selected.dataset.sc) };
+  ev.target.setPointerCapture(ev.pointerId);
+});
+
+$('gDel').addEventListener('pointerdown', ev => {
+  ev.preventDefault();
+  ev.stopPropagation();
+  deleteSelected();
+});
+
+window.addEventListener('pointermove', ev => {
+  if(!action) return;
+  if(action.type === 'drag'){
+    const nx = action.origX + (ev.clientX - action.startX) / scaleFactor;
+    const ny = action.origY + (ev.clientY - action.startY) / scaleFactor;
+    action.el.dataset.x = Math.max(20, Math.min(580, nx)).toFixed(1);
+    action.el.dataset.y = Math.max(20, Math.min(358, ny)).toFixed(1);
+    applyItemTransform(action.el);
+  } else if(action.type === 'rot'){
+    let deg = Math.atan2(ev.clientY - action.cy, ev.clientX - action.cx) * 180 / Math.PI + 90;
+    if(ev.shiftKey) deg = Math.round(deg / 15) * 15;
+    setRot(deg);
+  } else if(action.type === 'scale'){
+    const dist = Math.hypot(ev.clientX - action.cx, ev.clientY - action.cy);
+    const sc = Math.max(0.4, Math.min(2.6, action.startSc * (dist / action.startDist)));
+    action.el.dataset.sc = sc.toFixed(2);
+    applyItemTransform(action.el);
+    if($('rngSc')){
+      const pct = Math.round(sc * 100);
+      $('rngSc').value = pct;
+      $('valSc').textContent = pct + '%';
+    }
+  }
+});
+
+window.addEventListener('pointerup', () => { action = null; });
+window.addEventListener('pointercancel', () => { action = null; });
+
+window.addEventListener('keydown', ev => {
+  if(!selected) return;
+  if(document.activeElement && (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA')) return;
+  if(ev.key === 'Delete' || ev.key === 'Backspace'){
+    ev.preventDefault();
+    deleteSelected();
+  }
+});
+
+document.querySelectorAll('.main-tabs button').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('.main-tabs button').forEach(b => b.classList.toggle('on', b === btn));
+    document.querySelectorAll('.pane').forEach(p => p.classList.toggle('on', p.id === 'pane-' + btn.dataset.tab));
+  };
+});
+
+function syncCardFields(){
+  const t = i18n[lang];
+  $('iname').textContent = $('fn').value.trim() || t.defName;
+  $('imajor').textContent = $('fm').value.trim() || t.defMajor;
+  $('iid').textContent = $('fi').value.trim() || t.defId;
+}
+
+$('fn').oninput = syncCardFields;
+$('fm').oninput = syncCardFields;
+$('fi').oninput = syncCardFields;
+
+function setLanguage(nextLang){
+  lang = nextLang;
+  const t = i18n[lang];
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.body.classList.toggle('rtl', lang === 'ar');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if(t[key]) el.textContent = t[key];
+  });
+  $('btnLang').textContent = t.langBtn;
+  $('fn').placeholder = t.namePh;
+  $('fm').placeholder = t.majorPh;
+  $('fi').placeholder = t.idPh;
+  $('classPill').textContent = t.classPill;
+  $('memberTag').textContent = t.memberTag;
+  $('lblName').textContent = t.lblName;
+  syncCardFields();
+  renderAvatarControls();
+  renderItemControls();
+}
+
+$('btnLang').onclick = () => setLanguage(lang === 'en' ? 'ar' : 'en');
+$('btnRand').onclick = randomizeAvatar;
+
+function resetForNextStudent(){
+  selectItem(null);
+  card.querySelectorAll('.it').forEach(el => el.remove());
+  $('fn').value = '';
+  $('fm').value = '';
+  $('fi').value = '';
+  applyTheme('white');
+  randomizeAvatar();
+  syncCardFields();
+  $('modal').classList.remove('on');
+  document.querySelector('.main-tabs button[data-tab="details"]').click();
+  $('fn').focus();
+}
+
+$('btnReset').onclick = resetForNextStudent;
+$('btnModalNext').onclick = resetForNextStudent;
+
+async function sendToAppsScript(){
+  const t = i18n[lang];
+  const qrBox = $('qrBox');
+  const status = $('deliveryStatus');
+  const retry = $('btnRetry');
+  retry.style.display = 'none';
+
+  if(!SCRIPT_URL){
+    qrBox.innerHTML = '<div style="font-size:36px">📱</div>';
+    status.className = 'status-pill';
+    status.textContent = t.noScript;
+    return;
+  }
+
+  qrBox.innerHTML = '<div class="spinner"></div>';
+  status.className = 'status-pill';
+  status.textContent = t.sending;
+
+  try{
+    const res = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        image: lastDataUrl,
+        name: $('fn').value.trim() || 'IEEE ASU Student'
+      })
+    });
+    const data = await res.json();
+    if(!data.ok || !data.url) throw new Error('failed');
+    qrBox.innerHTML = '';
+    new QRCode(qrBox, {
+      text: data.url,
+      width: 152,
+      height: 152,
+      colorDark: '#0e1b38',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+    status.className = 'status-pill ok';
+    status.textContent = t.qrReady;
+  } catch(err){
+    qrBox.innerHTML = '<div style="font-size:34px">⚠️</div>';
+    status.className = 'status-pill err';
+    status.textContent = t.sendErr;
+    retry.style.display = 'inline-block';
+  }
+}
+    const data = await res.json();
+    if(!data.ok || !data.url) throw new Error('failed');
+    qrBox.innerHTML = '';
+    new QRCode(qrBox, {
+      text: data.url,
+      width: 152,
+      height: 152,
+      colorDark: '#0e1b38',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+    status.className = 'status-pill ok';
+    status.textContent = data.emailed ? t.qrAndEmail : t.qrReady;
+  } catch(err){
+    qrBox.innerHTML = '<div style="font-size:34px">⚠️</div>';
+    status.className = 'status-pill err';
+    status.textContent = t.sendErr;
+    retry.style.display = 'inline-block';
+  }
+}
+
+$('btnDone').onclick = async () => {
+  selectItem(null);
+  if(typeof html2canvas === 'undefined'){
+    alert('Export library is still loading. Please check internet connection.');
+    return;
+  }
+  const prevTransform = holder.style.transform;
+  holder.style.transform = 'none';
+  try{
+    const canvas = await html2canvas(card, { scale: 2, backgroundColor: null, useCORS: true });
+    holder.style.transform = prevTransform;
+    lastDataUrl = canvas.toDataURL('image/png');
+    $('outImg').src = lastDataUrl;
+    $('modal').classList.add('on');
+    sendToAppsScript();
+  } catch(err){
+    holder.style.transform = prevTransform;
+    alert('Could not export card image. Make sure the page is hosted via GitHub Pages or a local server.');
+  }
+};
+
+$('btnRetry').onclick = sendToAppsScript;
+$('btnCloseModal').onclick = () => $('modal').classList.remove('on');
+$('btnEdit').onclick = () => $('modal').classList.remove('on');
+
+$('btnDownload').onclick = () => {
+  if(!lastDataUrl) return;
+  const a = document.createElement('a');
+  const safeName = ($('fn').value.trim() || 'ieee-asu-card').replace(/[^a-zA-Z0-9\u0600-\u06FF_-]+/g, '-');
+  a.download = safeName + '-IEEE-ASU.png';
+  a.href = lastDataUrl;
+  a.click();
+};
+
+renderThemes();
+renderDecor();
+randomizeAvatar();
+setLanguage('en');
+fit();
+})();
+</script>
+</body>
+</html>
